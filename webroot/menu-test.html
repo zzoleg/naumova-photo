@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Test v3</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; }
+
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: #080604;
+}
+
+/* Curtain: HIGH CONTRAST folds */
+.menu-curtain {
+  position: absolute; inset: 0; z-index: 0;
+}
+/* Bright fold highlights */
+.menu-curtain::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 95% at 6% 50%,   rgba(80,55,30,0.8) 0%, transparent 40%),
+    radial-gradient(ellipse 55% 95% at 20% 48%,  rgba(90,60,32,0.75) 0%, transparent 38%),
+    radial-gradient(ellipse 50% 95% at 36% 52%,  rgba(75,50,28,0.8) 0%, transparent 36%),
+    radial-gradient(ellipse 55% 95% at 52% 47%,  rgba(85,58,30,0.75) 0%, transparent 38%),
+    radial-gradient(ellipse 50% 95% at 68% 53%,  rgba(78,52,29,0.8) 0%, transparent 36%),
+    radial-gradient(ellipse 55% 95% at 82% 48%,  rgba(88,60,31,0.75) 0%, transparent 38%),
+    radial-gradient(ellipse 60% 95% at 95% 50%,  rgba(72,48,26,0.8) 0%, transparent 40%);
+}
+/* Dark creases + deep shadows */
+.menu-curtain::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    /* Narrow dark crease lines between folds */
+    radial-gradient(ellipse 8% 90% at 13% 50%,   rgba(2,1,0,0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 8% 90% at 29% 50%,   rgba(2,1,0,0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 8% 90% at 45% 50%,   rgba(2,1,0,0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 8% 90% at 61% 50%,   rgba(2,1,0,0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 8% 90% at 77% 50%,   rgba(2,1,0,0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 8% 90% at 91% 50%,   rgba(2,1,0,0.95) 0%, transparent 60%),
+    /* Heading shadow */
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.98) 0%,
+      rgba(0,0,0,0.85) 6%,
+      rgba(0,0,0,0.5) 12%,
+      rgba(0,0,0,0.15) 22%,
+      transparent 35%
+    ),
+    /* Bottom shadow */
+    linear-gradient(to top,
+      rgba(0,0,0,0.95) 0%,
+      rgba(0,0,0,0.7) 5%,
+      rgba(0,0,0,0.3) 12%,
+      transparent 28%
+    ),
+    /* Side vignettes */
+    linear-gradient(to right,
+      rgba(0,0,0,0.9) 0%,
+      rgba(0,0,0,0.5) 6%,
+      transparent 14%,
+      transparent 86%,
+      rgba(0,0,0,0.5) 94%,
+      rgba(0,0,0,0.9) 100%
+    );
+}
+
+/* Spotlight: 45vh, uniform, bright */
+.menu-spotlight {
+  position: absolute; z-index: 1;
+  width: 45vh; height: 45vh;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  box-shadow:
+    0 0 40px 20px rgba(255,255,255,0.1),
+    0 0 80px 40px rgba(255,255,255,0.05);
+  transform: translate(-50%, -50%);
+  animation: spotlightMove 14s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes spotlightMove {
+  0%   { transform: translate(-50%, calc(-50% - 14vh)); }
+  25%  { transform: translate(calc(14vw - 50%), -50%); }
+  50%  { transform: translate(-50%, calc(14vh - 50%)); }
+  75%  { transform: translate(calc(-50% - 14vw), -50%); }
+  100% { transform: translate(-50%, calc(-50% - 14vh)); }
+}
+
+.menu-content { position: relative; z-index: 3; }
+.menu-link {
+  font-family: serif; font-size: 2.5rem; color: #e5dfd3;
+  text-decoration: none; display: block; margin: 16px 0; text-align: center;
+}
+.info {
+  position: absolute; bottom: 20px; left: 20px; z-index: 5;
+  color: #aaa; font-family: monospace; font-size: 10px;
+  background: rgba(0,0,0,0.7); padding: 6px 10px; border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="menu-overlay">
+  <div class="menu-curtain"></div>
+  <div class="menu-spotlight"></div>
+  <div class="menu-content">
+    <a href="#" class="menu-link">Home</a>
+    <a href="#" class="menu-link">Your Story</a>
+    <a href="#" class="menu-link">The Filmmaker</a>
+  </div>
+</div>
+
+<div class="info">
+  Folds: bright brown rgba(80-90, 50-60, 28-32, 0.75-0.8)<br>
+  Creases: near-black, narrow (8% width)<br>
+  Spotlight: 45vh, solid 18% + glow
+</div>
+
+</body>
+</html>

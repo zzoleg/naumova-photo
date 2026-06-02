@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Aperture</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* КРУГ — это ЧЁРНЫЙ оверлей с mask-image */
+/* transparent внутри круга = оверлей спрятан = видна белая страница */
+/* black снаружи круга = оверлей виден = темно */
+.aperture {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 10;
+  pointer-events: none;
+  background: #000000;
+  opacity: 1;
+}
+
+/* СТАТУС поверх всего */
+.status {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 20;
+  background: rgba(255,255,255,0.9);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: monospace;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  color: #000;
+}
+
+/* ЯРКИЙ контент для теста */
+.content {
+  min-height: 400vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block {
+  width: 80%;
+  max-width: 800px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh auto;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111;
+  background: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+}
+
+.block:nth-child(2) { background: #e8f4ff; }
+.block:nth-child(3) { background: #fff0e8; }
+.block:nth-child(4) { background: #e8ffe8; }
+.block:nth-child(5) { background: #fff8e8; }
+
+.block span {
+  font-size: 1rem;
+  margin-top: 20px;
+  color: #666;
+}
+</style>
+</head>
+<body>
+
+<div class="aperture" id="aperture"></div>
+
+<div class="status" id="status">
+  scrollY: <span id="sY">0</span>px<br>
+  radius: <span id="sR">0</span>%
+</div>
+
+<div class="content">
+  <div class="block">HERO <span>скролль вниз — круг будет сужаться</span></div>
+  <div class="block">BLOCK 1 <span>на границе секций темнеет</span></div>
+  <div class="block">BLOCK 2 <span>в середине — светло</span></div>
+  <div class="block">BLOCK 3 <span>на границе — снова темно</span></div>
+  <div class="block">BLOCK 4 <span>конец теста</span></div>
+</div>
+
+<script>
+var overlay = document.getElementById('aperture');
+var statusY = document.getElementById('sY');
+var statusR = document.getElementById('sR');
+var sections = document.querySelectorAll('.block');
+var current = 0;
+var smooth = 0;
+
+function setRadius(val) {
+  // val = 0 (открыто): transparent 95%, black 100% → страница видна
+  // val = 1 (закрыто): transparent -5%, black 3% → темно
+  var tPct = Math.max(-10, 100 * (1 - val) - 5);
+  var bPct = Math.min(100, 100 * (1 - val) + 3);
+  var mask = 'radial-gradient(circle at 50% 50%, transparent ' + tPct + '%, black ' + bPct + '%)';
+  overlay.style.webkitMaskImage = mask;
+  overlay.style.maskImage = mask;
+  statusR.textContent = Math.round((1 - val) * 100);
+  
+  // Какой процент страницы виден через прозрачное отверстие?
+  // val=0 → transparent 95% → 95% страницы видно
+  // val=1 → transparent -5% → 0% страницы видно
+}
+
+function update() {
+  var vpCenter = window.scrollY + window.innerHeight / 2;
+  var minDist = Infinity;
+  var threshold = window.innerHeight * 0.4;
+  
+  for (var i = 0; i < sections.length; i++) {
+    var r = sections[i].getBoundingClientRect();
+    var sTop = r.top + window.scrollY;
+    var sBot = r.bottom + window.scrollY;
+    minDist = Math.min(minDist, Math.abs(vpCenter - sTop), Math.abs(vpCenter - sBot));
+  }
+  
+  var val;
+  if (minDist >= threshold) {
+    val = 0; // далеко от границ → открыто
+  } else {
+    var t = 1 - (minDist / threshold);
+    val = 0.94 * (t * t * t);
+  }
+  
+  // Мёртвая зона сверху/снизу
+  if (window.scrollY < 100 || window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 200) {
+    val = 0;
+  }
+  
+  current = val;
+  statusY.textContent = window.scrollY;
+}
+
+function animate() {
+  smooth += (current - smooth) * 0.1;
+  setRadius(smooth);
+  requestAnimationFrame(animate);
+}
+
+// Init: открыто
+update();
+animate();
+
+// Scroll handler
+window.addEventListener('scroll', update);
+
+</script>
+</body>
+</html>
