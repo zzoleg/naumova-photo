@@ -1,0 +1,4 @@
+.env
+instagram_content/
+*.pyc
+__pycache__/
