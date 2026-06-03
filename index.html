@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alena Naumova — Искусство женского портрета</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --bg-alt: #1a1a1a;
+    --text: #f0ece4;
+    --text-muted: #9e9a92;
+    --accent: #c9a96e;
+    --accent-dim: #8a7a5a;
+    --border: #2a2a2a;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ── HEADER ── */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .header.scrolled { border-color: var(--border); }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+  .logo em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .logo span { color: var(--text-muted); font-size: 14px; margin-left: 4px; }
+
+  .nav { display: flex; gap: 36px; align-items: center; }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  .nav a:hover { color: var(--accent); }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 16px 24px; }
+    .nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); }
+    .nav.open { display: flex; }
+    .menu-toggle { display: block; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    background: linear-gradient(180deg, #0d0d0d 0%, #14110e 50%, #0d0d0d 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 720px; position: relative; z-index: 1; }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s;
+    background: transparent;
+    cursor: pointer;
+  }
+  .hero-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-6px); }
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .section { padding: 60px 24px; }
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .about { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .about-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    filter: grayscale(0.3);
+  }
+
+  .about-text h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .about-signature {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    margin-top: 24px;
+    font-size: 18px;
+  }
+
+  /* ── PORTFOLIO GRID ── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+
+  .portfolio-item:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/9;
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: grayscale(0.2);
+  }
+
+  .portfolio-item:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0);
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 24px 24px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+  .portfolio-overlay h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .portfolio-overlay p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    background: var(--bg-alt);
+    text-align: center;
+    padding: 100px 48px;
+    position: relative;
+  }
+
+  .philosophy::before {
+    content: '"';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-serif);
+    font-size: 120px;
+    color: var(--accent);
+    opacity: 0.1;
+    line-height: 1;
+  }
+
+  .philosophy blockquote {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 3vw, 32px);
+    font-style: italic;
+    max-width: 720px;
+    margin: 0 auto 16px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .philosophy cite {
+    font-size: 13px;
+    color: var(--accent);
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    padding: 40px 32px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .service-card:hover {
+    border-color: var(--accent);
+    background: rgba(201,169,110,0.03);
+  }
+
+  .service-card .num {
+    font-family: var(--font-serif);
+    font-size: 40px;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .service-card .price {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+    padding: 100px 48px;
+  }
+
+  .contact h2 {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .contact p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 4px;
+    transition: all 0.3s;
+  }
+
+  .contact-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .footer { flex-direction: column; text-align: center; padding: 24px; }
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    cursor: pointer;
+  }
+
+  .lightbox.active { display: flex; }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    color: var(--text);
+    font-size: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+  }
+
+  .lightbox-close:hover { opacity: 0.6; }
+
+  /* ── INSTAGRAM GRID ── */
+  .instagram-section {
+    padding: 60px 48px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 32px 0;
+  }
+
+  @media (max-width: 768px) {
+    .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .instagram-grid a {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .instagram-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    filter: grayscale(0.3);
+  }
+
+  .instagram-grid a:hover img {
+    transform: scale(1.08);
+    filter: grayscale(0);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <a href="#" class="logo">Alena Naumova <span>/ фотограф</span></a>
+  <nav class="nav" id="nav">
+    <a onclick="scrollToSection('portfolio')">Портфолио</a>
+    <a onclick="scrollToSection('about')">Обо мне</a>
+    <a onclick="scrollToSection('services')">Услуги</a>
+    <a onclick="scrollToSection('philosophy')">Философия</a>
+    <a onclick="scrollToSection('contact')">Контакты</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-label">Женский фотограф • Минск</div>
+    <h1>Я вижу <em>больше</em>,<br>чем просто кадр</h1>
+    <p>Каждая фотосессия — это история. О женщине, её силе, красоте и глубине. Я не просто фотографирую — я создаю искусство, в котором вы узнаете себя настоящую.</p>
+    <a href="#portfolio" class="hero-btn" onclick="scrollToSection('portfolio')">Смотреть портфолио</a>
+  </div>
+  <div class="hero-scroll">Листайте вниз</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+  <div class="fade-in">
+    <div class="section-label">Портфолио</div>
+    <h2 class="section-title">Избранные работы</h2>
+    <p class="section-subtitle">Каждая съёмка — это отдельная история, прожитая вместе. От нежной уязвимости до тёмной чувственности.</p>
+  </div>
+
+  <div class="portfolio-grid" style="margin-top:48px">
+    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DT5T_RLDKkk.jpg')">
+      <img src="/instagram_content/photos/DT5T_RLDKkk.jpg" alt="Портрет" loading="lazy">
+      <div class="portfolio-overlay">
+        <h3>Взгляд внутрь себя</h3>
+        <p>«Через пару минут Вы узнаете, что скрывается за этой довольной улыбкой»</p>
+      </div>
+    </div>
+
+    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DYxQViyiufr.jpg')">
+      <img src="/instagram_content/photos/DYxQViyiufr.jpg" alt="Женщина и искусство" loading="lazy">
+      <div class="portfolio-overlay">
+        <h3>Женщина и картина</h3>
+        <p>Что общего у Женщины и картины? Присмотрись, дорогой критик.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DYzk0OTinbb.jpg')">
+      <img src="/instagram_content/photos/DYzk0OTinbb.jpg" alt="Тёмная сторона" loading="lazy">
+      <div class="portfolio-overlay">
+        <h3>Тёмная сторона</h3>
+        <p>Это рассказ о тёмной стороне женщины — манкой, соблазнительной, властной...</p>
+      </div>
+    </div>
+
+    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DW6oVVdjLqm.jpg')">
+      <img src="/instagram_content/photos/DW6oVVdjLqm.jpg" alt="Женская сила" loading="lazy">
+      <div class="portfolio-overlay">
+        <h3>Просто подумай: КТО?</h3>
+        <p>Каждая женщина — целая вселенная</p>
+      </div>
+    </div>
+
+    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DWMk64EjCrr.jpg')">
+      <img src="/instagram_content/photos/DWMk64EjCrr.jpg" alt="Отпуская прошлое" loading="lazy">
+      <div class="portfolio-overlay">
+        <h3>Отпуская прошлое</h3>
+        <p>«Мне всегда было невозможно трудно отпускать прошлое... Но приходят перемены»</p>
+      </div>
+    </div>
+
+    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DRwwj_YjAJN.jpg')">
+      <img src="/instagram_content/photos/DRwwj_YjAJN.jpg" alt="Женщина — палитра" loading="lazy">
+      <div class="portfolio-overlay">
+        <h3>Женщина — это не о простом</h3>
+        <p>Целая палитра полу-... Полувзгляд, полужест, полутон...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM GRID -->
+<section class="instagram-section">
+  <div class="section-label">За портфолио в Instagram</div>
+  <h2 class="section-title" style="margin-bottom:8px">@alena_naumova_photo</h2>
+  <p class="section-subtitle" style="margin:0 auto 24px;text-align:center">Больше работ — в моём Instagram</p>
+  <div class="instagram-grid">
+    <a href="https://www.instagram.com/p/DT5T_RLDKkk/" target="_blank">
+      <img src="/instagram_content/photos/DT5T_RLDKkk.jpg" alt="" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/p/DYxQViyiufr/" target="_blank">
+      <img src="/instagram_content/photos/DYxQViyiufr.jpg" alt="" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/p/DYzk0OTinbb/" target="_blank">
+      <img src="/instagram_content/photos/DYzk0OTinbb.jpg" alt="" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/p/DW6oVVdjLqm/" target="_blank">
+      <img src="/instagram_content/photos/DW6oVVdjLqm.jpg" alt="" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/p/DWMk64EjCrr/" target="_blank">
+      <img src="/instagram_content/photos/DWMk64EjCrr.jpg" alt="" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/p/DRwwj_YjAJN/" target="_blank">
+      <img src="/instagram_content/photos/DRwwj_YjAJN.jpg" alt="" loading="lazy">
+    </a>
+  </div>
+  <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" class="hero-btn" style="margin-top:24px">Подписаться в Instagram</a>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about">
+    <div>
+      <img src="/instagram_content/photos/DT5T_RLDKkk.jpg" alt="Алена Наумова" class="about-image">
+    </div>
+    <div class="about-text fade-in">
+      <div class="section-label">Обо мне</div>
+      <h2>За каждым кадром — художник</h2>
+      <p>Когда-то я почти свернула на путь художника. В четвёртом классе мои работы отобрали для поступления в художественный лицей. Жизнь распорядилась иначе, но искусство всё равно нашло меня — через объектив.</p>
+      <p>В моей копилке несколько персональных выставок. Многие из работ можно смело приравнять к произведениям современного искусства. На мои съёмки приезжают люди со всего Минска и не только.</p>
+      <p>Я не делаю «просто фото». Я создаю истории, в которых каждая женщина раскрывается с новой, неожиданной стороны.</p>
+      <div class="about-signature">— Алёна Наумова</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <blockquote>
+    «Имеет ли значение, что я пишу, или важен лишь кадр?<br>
+    Имеет ли значение, о чём эта история, или важен лишь кадр?<br>
+    Что имеет значение для ВАС?»
+  </blockquote>
+  <cite>— из поста Алёны</cite>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="fade-in" style="text-align:center">
+    <div class="section-label">Услуги</div>
+    <h2 class="section-title">Создаём историю вместе</h2>
+    <p class="section-subtitle" style="margin:0 auto">Каждая фотосессия — индивидуальный подход и глубокая проработка образа</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="num">01</div>
+      <h3>Индивидуальная фотосессия</h3>
+      <p>Раскрытие вашей уникальности. Создание образа от идеи до воплощения. Комфортная атмосфера, в которой вы забудете о камере.</p>
+      <div class="price">от 250 BYN</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="num">02</div>
+      <h3>Творческая съёмка</h3>
+      <p>Для тех, кто готов к экспериментам. Художественные образы, нестандартные локации, работа с эмоцией и драматургией кадра.</p>
+      <div class="price">от 350 BYN</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="num">03</div>
+      <h3>Love Story / Пара</h3>
+      <p>История ваших отношений в кадрах, которые будут греть сердце годами. Естественно, тепло, искренне.</p>
+      <div class="price">от 300 BYN</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="fade-in">
+    <h2>Давайте создадим<br>вашу историю</h2>
+    <p>Напишите мне, и мы обсудим вашу идею<br>Я нахожусь в Минске и провожу съёмки по всей Беларуси</p>
+    <div class="contact-links">
+      <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" class="contact-link">Instagram</a>
+      <a href="https://t.me/alena_naumova_photo" target="_blank" class="contact-link">Telegram</a>
+      <a href="mailto:alena@naumova.photo" class="contact-link">Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>© 2026 Alena Naumova — <a href="https://www.instagram.com/alena_naumova_photo" target="_blank">@alena_naumova_photo</a></span>
+  <span>Женский фотограф • Минск</span>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Scroll effect for header
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Smooth scroll
+  function scrollToSection(id) {
+    document.getElementById('nav').classList.remove('open');
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('nav').classList.toggle('open');
+  }
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox-img')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Close lightbox on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+</body>
+</html>
