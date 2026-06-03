@@ -62,13 +62,13 @@ ADMIN_HTML = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naumova — Админ-панель</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=EB+Garamond:wght@400;500;600;700&family=Sedan&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #0a0a0a; --text: #e5dfd3; --muted: #8a857b; --accent: #d4883a; --accent-light: #e8a74d; --font-serif: 'EB Garamond', serif; --font-sans: 'Barlow', sans-serif; }
+:root { --bg: #0a0a0a; --text: #e5dfd3; --muted: #8a857b; --accent: #d4883a; --accent-light: #e8a74d; --font-serif: 'EB Garamond', serif; --font-sans: 'Montserrat', sans-serif; --font-display: 'Sedan', serif; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
 .container { max-width: 500px; width: 100%; padding: 40px 24px; text-align: center; }
-.logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: .15em; margin-bottom: 8px; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .15em; margin-bottom: 8px; }
 .subtitle { color: var(--muted); font-size: .85rem; margin-bottom: 40px; }
 .card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 32px; text-align: left; }
 h2 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 20px; text-align: center; }
