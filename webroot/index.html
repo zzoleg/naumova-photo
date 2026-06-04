@@ -271,7 +271,8 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
 </div>
 
 <section class="portfolio-section" id="portfoliogrid">
-  <div class="label" style="text-align:center;margin-bottom:12px" data-i18n="gallery_label">Избранные работы</div>
+  <div class="label" style="text-align:center" data-i18n="gallery_label">Портфолио</div>
+  <h2 style="font-size:22.5pt;font-weight:900;font-family:'Barlow',sans-serif;color:#f28705;margin-bottom:48px;line-height:1.2;text-align:center">Смотрите истории</h2>
   <div class="portfolio-grid">
     <div class="portfolio-item featured" onclick="openLightbox('/wfolio-assets/cover3.jpg')">
       <img src="/wfolio-assets/cover3.jpg" alt="Семейная съёмка" loading="lazy">
@@ -331,101 +332,98 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
       <div class="portfolio-overlay"><h3>Творческая съёмка</h3><p>Художественные образы</p></div>
     </div>
   </div>
-</section>
-
-<section class="albums-section" id="albums">
-  <div class="label" data-i18n="albums_label">Альбомы</div>
-  <h2 data-i18n="albums_title">Смотрите истории</h2>
-  <div class="albums-tabs">
-    <button class="albums-tab active" onclick="switchAlbumsTab(event, 'all')">Все</button>
-    <button class="albums-tab" onclick="switchAlbumsTab(event, 'family')">Семейные</button>
-    <button class="albums-tab" onclick="switchAlbumsTab(event, 'women')">Женские</button>
-  </div>
-  <div id="albumsFamilyCarousel" class="albums-carousel" style="display:none">
-    <a class="album-card" href="/albums/masha-gena-i-ruslan-ili-prostoe-schastie.html">
-      <img class="album-card-img" src="/albums/masha-gena-i-ruslan-ili-prostoe-schastie/cover.jpg" alt="Маша, Гена, Руслан и простое счастье" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Маша, Гена, Руслан и простое счастье</div><div class="album-card-count">55 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/varenka-i-eyo-tyoplyy-dom.html">
-      <img class="album-card-img" src="/albums/varenka-i-eyo-tyoplyy-dom/cover.jpg" alt="Варенька и её тёплый дом" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Варенька и её тёплый дом</div><div class="album-card-count">36 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/semya-simonenko-i-sentyabr-v-gorode.html">
-      <img class="album-card-img" src="/albums/semya-simonenko-i-sentyabr-v-gorode/cover.jpg" alt="Семья Симоненко и тёплый сентябрь" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Семья Симоненко и тёплый сентябрь</div><div class="album-card-count">42 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/semya-prosolovich-i-zimnyaya-progulka.html">
-      <img class="album-card-img" src="/albums/semya-prosolovich-i-zimnyaya-progulka/cover.jpg" alt="Семья Просолович и зимняя прогулка" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Семья Просолович и зимняя прогулка</div><div class="album-card-count">39 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/semya-murzinyh-i-mechtatelnyy-avgust.html">
-      <img class="album-card-img" src="/albums/semya-murzinyh-i-mechtatelnyy-avgust/cover.jpg" alt="Семья Мурзиных и мечтательный август" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Семья Мурзиных и мечтательный август</div><div class="album-card-count">40 фото</div></div>
-    </a>
-  </div>
-  <div id="albumsWomenCarousel" class="albums-carousel" style="display:none">
-    <a class="album-card" href="/albums/miroslava-yarche-solntsa.html">
-      <img class="album-card-img" src="/albums/miroslava-yarche-solntsa/cover.jpg" alt="Мирослава, осеннее солнце" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Мирослава, осеннее солнце</div><div class="album-card-count">31 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/veronika-i-govoryaschaya-tishina.html">
-      <img class="album-card-img" src="/albums/veronika-i-govoryaschaya-tishina/cover.jpg" alt="Вероника и говорящая тишина" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Вероника и говорящая тишина</div><div class="album-card-count">16 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/yana-i-magiya-zhenstvennosti.html">
-      <img class="album-card-img" src="/albums/yana-i-magiya-zhenstvennosti/cover.jpg" alt="Яна и магия женственности" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Яна и магия женственности</div><div class="album-card-count">24 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/tatyana-i-vzglyad-vnutr-sebya.html">
-      <img class="album-card-img" src="/albums/tatyana-i-vzglyad-vnutr-sebya/cover.jpg" alt="Татьяна и взгляд внутрь себя" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Татьяна и взгляд внутрь себя</div><div class="album-card-count">19 фото</div></div>
-    </a>
-    <a class="album-card" href="/albums/tatyana-i-zhenskoe-ocharovanie.html">
-      <img class="album-card-img" src="/albums/tatyana-i-zhenskoe-ocharovanie/cover.jpg" alt="Татьяна и женское очарование" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Татьяна и женское очарование</div><div class="album-card-count">18 фото</div></div>
-    </a>
-  </div>
-  <div id="albumsAllCarousel" class="albums-carousel">
-    <a class="album-card" href="/albums/masha-gena-i-ruslan-ili-prostoe-schastie.html">
-      <img class="album-card-img" src="/albums/masha-gena-i-ruslan-ili-prostoe-schastie/cover.jpg" alt="Маша, Гена, Руслан и простое счастье" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Маша, Гена, Руслан и простое счастье</div><div class="album-card-count">55 фото · Семейная</div></div>
-    </a>
-    <a class="album-card" href="/albums/varenka-i-eyo-tyoplyy-dom.html">
-      <img class="album-card-img" src="/albums/varenka-i-eyo-tyoplyy-dom/cover.jpg" alt="Варенька и её тёплый дом" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Варенька и её тёплый дом</div><div class="album-card-count">36 фото · Семейная</div></div>
-    </a>
-    <a class="album-card" href="/albums/semya-simonenko-i-sentyabr-v-gorode.html">
-      <img class="album-card-img" src="/albums/semya-simonenko-i-sentyabr-v-gorode/cover.jpg" alt="Семья Симоненко и тёплый сентябрь" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Семья Симоненко и тёплый сентябрь</div><div class="album-card-count">42 фото · Семейная</div></div>
-    </a>
-    <a class="album-card" href="/albums/semya-prosolovich-i-zimnyaya-progulka.html">
-      <img class="album-card-img" src="/albums/semya-prosolovich-i-zimnyaya-progulka/cover.jpg" alt="Семья Просолович и зимняя прогулка" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Семья Просолович и зимняя прогулка</div><div class="album-card-count">39 фото · Семейная</div></div>
-    </a>
-    <a class="album-card" href="/albums/semya-murzinyh-i-mechtatelnyy-avgust.html">
-      <img class="album-card-img" src="/albums/semya-murzinyh-i-mechtatelnyy-avgust/cover.jpg" alt="Семья Мурзиных и мечтательный август" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Семья Мурзиных и мечтательный август</div><div class="album-card-count">40 фото · Семейная</div></div>
-    </a>
-    <a class="album-card" href="/albums/miroslava-yarche-solntsa.html">
-      <img class="album-card-img" src="/albums/miroslava-yarche-solntsa/cover.jpg" alt="Мирослава, осеннее солнце" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Мирослава, осеннее солнце</div><div class="album-card-count">31 фото · Женская</div></div>
-    </a>
-    <a class="album-card" href="/albums/veronika-i-govoryaschaya-tishina.html">
-      <img class="album-card-img" src="/albums/veronika-i-govoryaschaya-tishina/cover.jpg" alt="Вероника и говорящая тишина" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Вероника и говорящая тишина</div><div class="album-card-count">16 фото · Женская</div></div>
-    </a>
-    <a class="album-card" href="/albums/yana-i-magiya-zhenstvennosti.html">
-      <img class="album-card-img" src="/albums/yana-i-magiya-zhenstvennosti/cover.jpg" alt="Яна и магия женственности" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Яна и магия женственности</div><div class="album-card-count">24 фото · Женская</div></div>
-    </a>
-    <a class="album-card" href="/albums/tatyana-i-vzglyad-vnutr-sebya.html">
-      <img class="album-card-img" src="/albums/tatyana-i-vzglyad-vnutr-sebya/cover.jpg" alt="Татьяна и взгляд внутрь себя" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Татьяна и взгляд внутрь себя</div><div class="album-card-count">19 фото · Женская</div></div>
-    </a>
-    <a class="album-card" href="/albums/tatyana-i-zhenskoe-ocharovanie.html">
-      <img class="album-card-img" src="/albums/tatyana-i-zhenskoe-ocharovanie/cover.jpg" alt="Татьяна и женское очарование" loading="lazy">
-      <div class="album-card-overlay"><div class="album-card-title">Татьяна и женское очарование</div><div class="album-card-count">18 фото · Женская</div></div>
-    </a>
+  <div class="albums-section" style="margin-top:32px">
+    <div class="albums-tabs">
+      <button class="albums-tab active" onclick="switchAlbumsTab(event, 'all')">Все</button>
+      <button class="albums-tab" onclick="switchAlbumsTab(event, 'family')">Семейные</button>
+      <button class="albums-tab" onclick="switchAlbumsTab(event, 'women')">Женские</button>
+    </div>
+    <div id="albumsFamilyCarousel" class="albums-carousel" style="display:none">
+      <a class="album-card" href="/albums/masha-gena-i-ruslan-ili-prostoe-schastie.html">
+        <img class="album-card-img" src="/albums/masha-gena-i-ruslan-ili-prostoe-schastie/cover.jpg" alt="Маша, Гена, Руслан и простое счастье" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Маша, Гена, Руслан и простое счастье</div><div class="album-card-count">55 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/varenka-i-eyo-tyoplyy-dom.html">
+        <img class="album-card-img" src="/albums/varenka-i-eyo-tyoplyy-dom/cover.jpg" alt="Варенька и её тёплый дом" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Варенька и её тёплый дом</div><div class="album-card-count">36 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-simonenko-i-sentyabr-v-gorode.html">
+        <img class="album-card-img" src="/albums/semya-simonenko-i-sentyabr-v-gorode/cover.jpg" alt="Семья Симоненко и тёплый сентябрь" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Симоненко и тёплый сентябрь</div><div class="album-card-count">42 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-prosolovich-i-zimnyaya-progulka.html">
+        <img class="album-card-img" src="/albums/semya-prosolovich-i-zimnyaya-progulka/cover.jpg" alt="Семья Просолович и зимняя прогулка" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Просолович и зимняя прогулка</div><div class="album-card-count">39 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-murzinyh-i-mechtatelnyy-avgust.html">
+        <img class="album-card-img" src="/albums/semya-murzinyh-i-mechtatelnyy-avgust/cover.jpg" alt="Семья Мурзиных и мечтательный август" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Мурзиных и мечтательный август</div><div class="album-card-count">40 фото</div></div>
+      </a>
+    </div>
+    <div id="albumsWomenCarousel" class="albums-carousel" style="display:none">
+      <a class="album-card" href="/albums/miroslava-yarche-solntsa.html">
+        <img class="album-card-img" src="/albums/miroslava-yarche-solntsa/cover.jpg" alt="Мирослава, осеннее солнце" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Мирослава, осеннее солнце</div><div class="album-card-count">31 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/veronika-i-govoryaschaya-tishina.html">
+        <img class="album-card-img" src="/albums/veronika-i-govoryaschaya-tishina/cover.jpg" alt="Вероника и говорящая тишина" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Вероника и говорящая тишина</div><div class="album-card-count">16 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/yana-i-magiya-zhenstvennosti.html">
+        <img class="album-card-img" src="/albums/yana-i-magiya-zhenstvennosti/cover.jpg" alt="Яна и магия женственности" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Яна и магия женственности</div><div class="album-card-count">24 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-vzglyad-vnutr-sebya.html">
+        <img class="album-card-img" src="/albums/tatyana-i-vzglyad-vnutr-sebya/cover.jpg" alt="Татьяна и взгляд внутрь себя" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и взгляд внутрь себя</div><div class="album-card-count">19 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-zhenskoe-ocharovanie.html">
+        <img class="album-card-img" src="/albums/tatyana-i-zhenskoe-ocharovanie/cover.jpg" alt="Татьяна и женское очарование" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и женское очарование</div><div class="album-card-count">18 фото</div></div>
+      </a>
+    </div>
+    <div id="albumsAllCarousel" class="albums-carousel">
+      <a class="album-card" href="/albums/masha-gena-i-ruslan-ili-prostoe-schastie.html">
+        <img class="album-card-img" src="/albums/masha-gena-i-ruslan-ili-prostoe-schastie/cover.jpg" alt="Маша, Гена, Руслан и простое счастье" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Маша, Гена, Руслан и простое счастье</div><div class="album-card-count">55 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/varenka-i-eyo-tyoplyy-dom.html">
+        <img class="album-card-img" src="/albums/varenka-i-eyo-tyoplyy-dom/cover.jpg" alt="Варенька и её тёплый дом" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Варенька и её тёплый дом</div><div class="album-card-count">36 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-simonenko-i-sentyabr-v-gorode.html">
+        <img class="album-card-img" src="/albums/semya-simonenko-i-sentyabr-v-gorode/cover.jpg" alt="Семья Симоненко и тёплый сентябрь" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Симоненко и тёплый сентябрь</div><div class="album-card-count">42 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-prosolovich-i-zimnyaya-progulka.html">
+        <img class="album-card-img" src="/albums/semya-prosolovich-i-zimnyaya-progulka/cover.jpg" alt="Семья Просолович и зимняя прогулка" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Просолович и зимняя прогулка</div><div class="album-card-count">39 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-murzinyh-i-mechtatelnyy-avgust.html">
+        <img class="album-card-img" src="/albums/semya-murzinyh-i-mechtatelnyy-avgust/cover.jpg" alt="Семья Мурзиных и мечтательный август" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Мурзиных и мечтательный август</div><div class="album-card-count">40 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/miroslava-yarche-solntsa.html">
+        <img class="album-card-img" src="/albums/miroslava-yarche-solntsa/cover.jpg" alt="Мирослава, осеннее солнце" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Мирослава, осеннее солнце</div><div class="album-card-count">31 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/veronika-i-govoryaschaya-tishina.html">
+        <img class="album-card-img" src="/albums/veronika-i-govoryaschaya-tishina/cover.jpg" alt="Вероника и говорящая тишина" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Вероника и говорящая тишина</div><div class="album-card-count">16 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/yana-i-magiya-zhenstvennosti.html">
+        <img class="album-card-img" src="/albums/yana-i-magiya-zhenstvennosti/cover.jpg" alt="Яна и магия женственности" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Яна и магия женственности</div><div class="album-card-count">24 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-vzglyad-vnutr-sebya.html">
+        <img class="album-card-img" src="/albums/tatyana-i-vzglyad-vnutr-sebya/cover.jpg" alt="Татьяна и взгляд внутрь себя" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и взгляд внутрь себя</div><div class="album-card-count">19 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-zhenskoe-ocharovanie.html">
+        <img class="album-card-img" src="/albums/tatyana-i-zhenskoe-ocharovanie/cover.jpg" alt="Татьяна и женское очарование" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и женское очарование</div><div class="album-card-count">18 фото · Женская</div></div>
+      </a>
+    </div>
   </div>
 </section>
 
