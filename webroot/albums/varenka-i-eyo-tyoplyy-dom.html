@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Варенька и её тёплый дом — Алёна Наумова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Barlow+Condensed:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@400;600;700;800;900&family=Sedan&display=swap&amp;v=2" rel="stylesheet">
+<style>
+:root { --bg: #0a0a0a; --text: #e5dfd3; --muted: #8a857b; --accent: #d4883a; --accent-light: #e8a74d; --font-serif: 'EB Garamond', serif; --font-sans: 'Montserrat', sans-serif; --font-display: 'Sedan', serif; --font-black: 900; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-serif); }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9997; padding: 20px 40px; display: flex; align-items: center; background: rgba(10,10,10,.95); backdrop-filter: blur(10px); }
+.nav-left { position: absolute; left: 30px; top: 20px; }
+.nav-logo { font-family: 'Sedan', serif; font-size: 1.2rem; letter-spacing: .15em; color: #f28705; text-decoration: none; }
+.nav-right { position: absolute; right: 40px; top: 20px; display: flex; align-items: center; gap: 16px; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--text); text-decoration: none; font-family: var(--font-sans); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; transition: color .3s; }
+.nav-links a:hover { color: var(--accent); }
+.album-header { padding: 120px 48px 40px; max-width: 1200px; margin: 0 auto; }
+.album-header .label { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.album-header h1 { font-size: 22.5pt; font-weight: 900; font-family: 'Barlow', sans-serif; color: #f28705; }
+.album-header .back-link { display: inline-block; margin-top: 12px; color: var(--muted); text-decoration: none; font-family: var(--font-sans); font-size: .8rem; letter-spacing: .1em; transition: color .3s; }
+.album-header .back-link:hover { color: var(--accent); }
+.album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 4px; padding: 0 48px 80px; max-width: 1400px; margin: 0 auto; }
+.album-photo { overflow: hidden; cursor: pointer; aspect-ratio: 3/4; }
+.album-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .5s; filter: grayscale(.15) brightness(.9); }
+.album-photo:hover img { transform: scale(1.05); filter: grayscale(0) brightness(1); }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 48px; cursor: pointer; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 24px; right: 32px; color: var(--text); font-size: 2rem; cursor: pointer; background: none; border: none; width: 48px; height: 48px; transition: opacity .3s; }
+.lightbox-close:hover { opacity: .6; }
+@media (max-width: 768px) { .album-grid { grid-template-columns: repeat(2, 1fr); padding: 0 16px 60px; } .album-header { padding: 100px 16px 24px; } .album-grid { gap: 2px; } .album-photo { aspect-ratio: 3/4; } nav { padding: 16px 20px; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-left"><a href="/" class="nav-logo">Alena Naumova</a></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/">Главная</a></li>
+      <li><a href="/#portfolio">Портфолио</a></li>
+      <li><a href="/#contact">Контакты</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="album-header">
+  <div class="label">Семейные съёмки</div>
+  <h1>Варенька и её тёплый дом</h1>
+  <a href="/#portfoliogrid" class="back-link">← Все альбомы</a>
+</div>
+
+<div class="album-grid">
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_001.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_001.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_002.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_002.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_003.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_003.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_004.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_004.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_005.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_005.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_006.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_006.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_007.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_007.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_008.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_008.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_009.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_009.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_010.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_010.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_011.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_011.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_012.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_012.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_013.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_013.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_014.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_014.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_015.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_015.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_016.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_016.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_017.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_017.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_018.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_018.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_019.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_019.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_020.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_020.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_021.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_021.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_022.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_022.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_023.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_023.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_024.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_024.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_025.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_025.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_026.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_026.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_027.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_027.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_028.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_028.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_029.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_029.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_030.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_030.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_031.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_031.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_032.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_032.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_033.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_033.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_034.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_034.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_035.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_035.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+      <div class="album-photo" onclick="openLightbox('/albums/varenka-i-eyo-tyoplyy-dom/photo_036.jpg')">
+        <img src="/albums/varenka-i-eyo-tyoplyy-dom/photo_036.jpg" loading="lazy" alt="Варенька и её тёплый дом">
+      </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>
