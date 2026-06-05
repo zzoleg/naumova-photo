@@ -194,8 +194,8 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
   <div class="nav-left"><a href="#" class="nav-logo">Alena Naumova</a></div>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#hero" data-i18n="nav_home">Главная</a></li>
-      <li><a href="#story" data-i18n="nav_story">Обо мне</a></li>
+      <li><a href="#hero" onclick="event.preventDefault();scrollToSection('hero')" data-i18n="nav_home">Главная</a></li>
+      <li><a href="#story" onclick="event.preventDefault();scrollToSection('story')" data-i18n="nav_story">Обо мне</a></li>
       <li><a href="#portfoliogrid" data-i18n="nav_portfolio">Портфолио</a></li>
       <li><a href="#reviews" data-i18n="nav_reviews">Отзывы</a></li>
       <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
@@ -213,8 +213,8 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
     <source src="https://media.ofskinandsouls.com/videos/OldFilmGrain.mp4" type="video/mp4">
   </video>
   <div class="menu-content">
-    <a href="#hero" class="menu-link" data-i18n="menu_home">Главная</a>
-    <a href="#story" class="menu-link" data-i18n="menu_story">Обо мне</a>
+    <a href="#hero" onclick="event.preventDefault();scrollToSection('hero')" class="menu-link" data-i18n="menu_home">Главная</a>
+    <a href="#story" onclick="event.preventDefault();scrollToSection('story')" class="menu-link" data-i18n="menu_story">Обо мне</a>
     <a href="#portfoliogrid" class="menu-link" data-i18n="menu_portfolio">Портфолио</a>
     <a href="#reviews" class="menu-link" data-i18n="menu_reviews">Отзывы</a>
     <a href="#services" class="menu-link" data-i18n="menu_services">Услуги и цены</a>
@@ -682,6 +682,17 @@ setLang(currentLang);
     slides[current].classList.add('active');
   }, 5000);
 })();
+
+function scrollToSection(id) {
+  var sticky = document.querySelector('.sticky-scroll');
+  if (!sticky) return;
+  var h = sticky.offsetHeight, vh = window.innerHeight;
+  var scrollable = h - vh;
+  var top = sticky.getBoundingClientRect().top + window.scrollY;
+  var targets = { hero: 0.01, story: 0.26, about: 0.52, portfolio: 0.74 };
+  var o = targets[id] || 0;
+  window.scrollTo({ top: top + o * scrollable, behavior: 'smooth' });
+}
 
 (function() {
   var overlay = document.getElementById('aperture');
