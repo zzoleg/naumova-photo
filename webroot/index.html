@@ -689,7 +689,7 @@ function scrollToSection(id) {
   var h = sticky.offsetHeight, vh = window.innerHeight;
   var scrollable = h - vh;
   var top = sticky.getBoundingClientRect().top + window.scrollY;
-  var targets = { hero: 0.01, story: 0.26, about: 0.52, portfolio: 0.74 };
+  var targets = { hero: 0.01, story: 0.36, about: 0.52, portfolio: 0.74 };
   var o = targets[id] || 0;
   window.scrollTo({ top: top + o * scrollable, behavior: 'smooth' });
 }
