@@ -3,815 +3,890 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alena Naumova — Искусство женского портрета</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Alena Naumova — Женский и семейный фотограф Минск</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Barlow+Condensed:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@400;600;700;800;900&family=Sedan&display=swap&amp;v=2" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
-
-  :root {
-    --bg: #0d0d0d;
-    --bg-alt: #1a1a1a;
-    --text: #f0ece4;
-    --text-muted: #9e9a92;
-    --accent: #c9a96e;
-    --accent-dim: #8a7a5a;
-    --border: #2a2a2a;
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Inter', -apple-system, sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-sans);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  ::selection { background: var(--accent); color: var(--bg); }
-
-  /* ── HEADER ── */
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 20px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(13,13,13,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s;
-  }
-  .header.scrolled { border-color: var(--border); }
-
-  .logo {
-    font-family: var(--font-serif);
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    color: var(--text);
-    letter-spacing: 0.5px;
-  }
-  .logo em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .logo span { color: var(--text-muted); font-size: 14px; margin-left: 4px; }
-
-  .nav { display: flex; gap: 36px; align-items: center; }
-  .nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    cursor: pointer;
-  }
-  .nav a:hover { color: var(--accent); }
-
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-    .header { padding: 16px 24px; }
-    .nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); }
-    .nav.open { display: flex; }
-    .menu-toggle { display: block; }
-  }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 120px 24px 80px;
-    position: relative;
-    background: linear-gradient(180deg, #0d0d0d 0%, #14110e 50%, #0d0d0d 100%);
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.04) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content { max-width: 720px; position: relative; z-index: 1; }
-
-  .hero-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    font-weight: 500;
-  }
-
-  .hero h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero p {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 520px;
-    margin: 0 auto 36px;
-    font-weight: 300;
-  }
-
-  .hero-btn {
-    display: inline-block;
-    padding: 14px 40px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: all 0.4s;
-    background: transparent;
-    cursor: pointer;
-  }
-  .hero-btn:hover {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--text-muted);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    animation: float 2s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-6px); }
-  }
-
-  /* ── SECTION ── */
-  .section {
-    padding: 100px 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 768px) {
-    .section { padding: 60px 24px; }
-  }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent-dim);
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: var(--font-serif);
-    font-size: clamp(28px, 4vw, 40px);
-    margin-bottom: 16px;
-    font-weight: 700;
-  }
-
-  .section-subtitle {
-    color: var(--text-muted);
-    font-size: 15px;
-    max-width: 600px;
-    font-weight: 300;
-  }
-
-  /* ── ABOUT ── */
-  .about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .about { grid-template-columns: 1fr; gap: 32px; }
-  }
-
-  .about-image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    filter: grayscale(0.3);
-  }
-
-  .about-text h2 {
-    font-family: var(--font-serif);
-    font-size: 32px;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-
-  .about-text p {
-    color: var(--text-muted);
-    font-size: 15px;
-    margin-bottom: 20px;
-    font-weight: 300;
-  }
-
-  .about-signature {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--accent);
-    margin-top: 24px;
-    font-size: 18px;
-  }
-
-  /* ── PORTFOLIO GRID ── */
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  @media (max-width: 768px) {
-    .portfolio-grid { grid-template-columns: 1fr; }
-  }
-
-  .portfolio-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 3/4;
-  }
-
-  .portfolio-item:first-child {
-    grid-column: 1 / -1;
-    aspect-ratio: 16/9;
-  }
-
-  .portfolio-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease, filter 0.6s ease;
-    filter: grayscale(0.2);
-  }
-
-  .portfolio-item:hover img {
-    transform: scale(1.05);
-    filter: grayscale(0);
-  }
-
-  .portfolio-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 32px 24px 24px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-
-  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-
-  .portfolio-overlay h3 {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    margin-bottom: 4px;
-  }
-
-  .portfolio-overlay p {
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  /* ── PHILOSOPHY ── */
-  .philosophy {
-    background: var(--bg-alt);
-    text-align: center;
-    padding: 100px 48px;
-    position: relative;
-  }
-
-  .philosophy::before {
-    content: '"';
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-serif);
-    font-size: 120px;
-    color: var(--accent);
-    opacity: 0.1;
-    line-height: 1;
-  }
-
-  .philosophy blockquote {
-    font-family: var(--font-serif);
-    font-size: clamp(20px, 3vw, 32px);
-    font-style: italic;
-    max-width: 720px;
-    margin: 0 auto 16px;
-    line-height: 1.6;
-    color: var(--text);
-  }
-
-  .philosophy cite {
-    font-size: 13px;
-    color: var(--accent);
-    font-style: normal;
-    letter-spacing: 1px;
-  }
-
-  /* ── SERVICES ── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
-  }
-
-  @media (max-width: 768px) {
-    .services-grid { grid-template-columns: 1fr; }
-  }
-
-  .service-card {
-    padding: 40px 32px;
-    border: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-
-  .service-card:hover {
-    border-color: var(--accent);
-    background: rgba(201,169,110,0.03);
-  }
-
-  .service-card .num {
-    font-family: var(--font-serif);
-    font-size: 40px;
-    color: var(--accent);
-    opacity: 0.3;
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-
-  .service-card h3 {
-    font-family: var(--font-serif);
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-
-  .service-card p {
-    color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 300;
-  }
-
-  .service-card .price {
-    margin-top: 16px;
-    font-size: 14px;
-    color: var(--accent);
-    letter-spacing: 1px;
-  }
-
-  /* ── CONTACT ── */
-  .contact {
-    text-align: center;
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
-    padding: 100px 48px;
-  }
-
-  .contact h2 {
-    font-family: var(--font-serif);
-    font-size: 36px;
-    margin-bottom: 16px;
-  }
-
-  .contact p {
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    font-weight: 300;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .contact-link {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 4px;
-    transition: all 0.3s;
-  }
-
-  .contact-link:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    padding: 40px 48px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .footer a {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .footer a:hover { color: var(--accent); }
-
-  @media (max-width: 768px) {
-    .footer { flex-direction: column; text-align: center; padding: 24px; }
-  }
-
-  /* ── LIGHTBOX ── */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-    cursor: pointer;
-  }
-
-  .lightbox.active { display: flex; }
-
-  .lightbox img {
-    max-width: 90vw;
-    max-height: 85vh;
-    object-fit: contain;
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    color: var(--text);
-    font-size: 32px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s;
-  }
-
-  .lightbox-close:hover { opacity: 0.6; }
-
-  /* ── INSTAGRAM GRID ── */
-  .instagram-section {
-    padding: 60px 48px 100px;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin: 32px 0;
-  }
-
-  @media (max-width: 768px) {
-    .instagram-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .instagram-grid a {
-    display: block;
-    aspect-ratio: 1;
-    overflow: hidden;
-  }
-
-  .instagram-grid img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-    filter: grayscale(0.3);
-  }
-
-  .instagram-grid a:hover img {
-    transform: scale(1.08);
-    filter: grayscale(0);
-  }
-
-  /* ── ANIMATIONS ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@font-face {
+  font-family: 'Sedan Local';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Sedan-Regular.ttf) format('truetype');
+}
+:root { --bg: #0a0a0a; --text: #e5dfd3; --muted: #8a857b; --accent: #d4883a; --accent-light: #e8a74d; --font-serif: 'EB Garamond', serif; --font-sans: 'Montserrat', sans-serif; --font-display: 'Sedan Local', serif; --font-black: 900; }
+@property --sx { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --sy { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-serif); line-height: 1.7; overflow-x: hidden; }
+.aperture-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9995; pointer-events: none; background: #000000; }
+.aperture-grain { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9996; pointer-events: none; mix-blend-mode: screen; opacity: 0; object-fit: cover; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9997; padding: 20px 40px 44px; display: flex; align-items: center; background: #0a0a0a; }
+nav.scrolled { background: #0a0a0a; padding: 12px 40px 44px; mix-blend-mode: normal; }
+.nav-left { position: absolute; left: 30px; top: 20px; display: flex; align-items: center; gap: 20px; }
+nav.scrolled .nav-left { top: 12px; }
+.nav-logo { font-family: 'Sedan', serif; font-size: 1.2rem; letter-spacing: .15em; color: #f28705; text-decoration: none; }
+.nav-right { position: absolute; right: 40px; top: 20px; display: flex; align-items: center; gap: 16px; }
+nav.scrolled .nav-right { top: 12px; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--text); text-decoration: none; font-family: var(--font-sans); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; transition: color .3s; }
+.nav-links a:hover { color: var(--accent); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; }
+.hamburger span { width: 26px; height: 2px; background: var(--text); transition: .3s; display: block; }
+.nav-book-btn { display: inline-flex; align-items: center; padding: 10px 22px; border: 1px solid #f28705; border-radius: 30px; color: #f28705; text-decoration: none; font-family: 'Barlow', sans-serif; font-size: 9pt; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; transition: background .3s, color .3s; }
+.nav-book-btn:hover { background: #f28705; color: #0a0a0a; }
+body.menu-open .nav-book-btn { opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+body.menu-open .hamburger { display: none; }
+.menu-overlay { position: fixed; inset: 0; z-index: 9999; background: #080604; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.45s ease; overflow: hidden; }
+.menu-overlay.open { opacity: 1; pointer-events: auto; }
+.menu-curtain { position: absolute; inset: 0; z-index: 0; background: #080604; }
+.menu-curtain::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 150% at 6% 50%, #7a786b 0%, transparent 40%), radial-gradient(ellipse 55% 150% at 20% 48%, #807e71 0%, transparent 38%), radial-gradient(ellipse 50% 150% at 36% 52%, #767467 0%, transparent 36%), radial-gradient(ellipse 55% 150% at 52% 47%, #7e7c6f 0%, transparent 38%), radial-gradient(ellipse 50% 150% at 68% 53%, #787669 0%, transparent 36%), radial-gradient(ellipse 55% 150% at 82% 48%, #7c7a6d 0%, transparent 38%), radial-gradient(ellipse 60% 150% at 95% 50%, #747265 0%, transparent 40%); }
+.menu-curtain::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 8% 130% at 13% 50%, rgba(2,1,0,0.95) 0%, transparent 60%), radial-gradient(ellipse 8% 130% at 29% 50%, rgba(2,1,0,0.95) 0%, transparent 60%), radial-gradient(ellipse 8% 130% at 45% 50%, rgba(2,1,0,0.95) 0%, transparent 60%), radial-gradient(ellipse 8% 130% at 61% 50%, rgba(2,1,0,0.95) 0%, transparent 60%), radial-gradient(ellipse 8% 130% at 77% 50%, rgba(2,1,0,0.95) 0%, transparent 60%), radial-gradient(ellipse 8% 130% at 91% 50%, rgba(2,1,0,0.95) 0%, transparent 60%), linear-gradient(to bottom, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.85) 6%, rgba(0,0,0,0.5) 12%, rgba(0,0,0,0.15) 22%, transparent 35%), linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 5%, rgba(0,0,0,0.3) 12%, transparent 28%), linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 6%, transparent 14%, transparent 86%, rgba(0,0,0,0.5) 94%, rgba(0,0,0,0.9) 100%); }
+.menu-curtain-light { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.menu-curtain-light::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 150% at 6% 50%, #cccabe 0%, transparent 40%), radial-gradient(ellipse 55% 150% at 20% 48%, #d2d0c4 0%, transparent 38%), radial-gradient(ellipse 50% 150% at 36% 52%, #c8c6b8 0%, transparent 36%), radial-gradient(ellipse 55% 150% at 52% 47%, #d0cec2 0%, transparent 38%), radial-gradient(ellipse 50% 150% at 68% 53%, #cac8ba 0%, transparent 36%), radial-gradient(ellipse 55% 150% at 82% 48%, #ceccc0 0%, transparent 38%), radial-gradient(ellipse 60% 150% at 95% 50%, #c6c4b6 0%, transparent 40%); -webkit-mask-image: radial-gradient(circle 22.5vh at var(--sx) var(--sy), black 0%, black 55%, transparent 75%); mask-image: radial-gradient(circle 22.5vh at var(--sx) var(--sy), black 0%, black 55%, transparent 75%); animation: spotlightMaskPos 18s ease-in-out infinite; }
+.menu-curtain-light::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle 22.5vh at var(--sx) var(--sy), transparent 48%, rgba(255,255,255,0.08) 58%, transparent 72%); animation: spotlightMaskPos 18s ease-in-out infinite; }
+.menu-content { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.menu-link { font-family: var(--font-sans); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3); transition: color 0.35s, transform 0.35s; position: relative; }
+.menu-link:hover { color: var(--accent); transform: translateX(8px); }
+.menu-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.35s; }
+.menu-link:hover::after { width: 100%; }
+.menu-grain { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.8s ease; }
+.menu-overlay.open .menu-grain { opacity: 0.18; }
+.menu-logo { position: absolute; top: 15px; left: 32px; z-index: 4; font-family: 'Sedan', serif; font-size: 1.2rem; letter-spacing: .15em; color: #f28705; white-space: nowrap; }
+.lang-switch { position: absolute; top: 28px; right: 32px; z-index: 4; display: flex; gap: 0; border: 1px solid rgba(255,255,255,0.15); border-radius: 30px; overflow: hidden; }
+.lang-switch button { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; padding: 8px 18px; color: var(--muted); transition: background .3s, color .3s; }
+.lang-switch button.active { background: var(--accent); color: #0a0a0a; }
+.lang-switch button:hover:not(.active) { color: var(--text); }
+@keyframes spotlightMaskPos { 0% { --sx: 50%; --sy: 38%; } 25% { --sx: 62%; --sy: 50%; } 50% { --sx: 50%; --sy: 62%; } 75% { --sx: 38%; --sy: 50%; } 100% { --sx: 50%; --sy: 38%; } }
+.sticky-scroll { position: relative; height: 400vh; }
+.sticky-inner { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.scroll-section { position: absolute; inset: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 60px; text-align: center; pointer-events: none; }
+.hero-slider { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease; }
+.hero-slide.active { opacity: 1; }
+.hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.35), rgba(0,0,0,0.7)); z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 800px; }
+#hero h1 { font-size: 22.5pt; font-weight: 900; line-height: 1.1; margin-bottom: 24px; font-family: 'Barlow', sans-serif; color: #f28705; text-shadow: 0 2px 16px rgba(0,0,0,0.7); }
+.hero-cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: var(--font-sans); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; transition: background .3s, color .3s; }
+.hero-cta:hover { background: var(--accent); color: #0a0a0a; }
+.scroll-section .label { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.scroll-section h2 { font-size: 22.5pt; font-weight: 900; margin-bottom: 20px; line-height: 1.2; font-family: 'Barlow', sans-serif; color: #f28705; }
+.scroll-section p { max-width: 640px; color: var(--muted); font-size: 1.8rem; line-height: 1.25; }
+#hero p { max-width: 600px; font-size: 1.45rem; color: #b8b1a2; margin-bottom: 40px; margin: 0 auto 40px; text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 4px 24px rgba(0,0,0,0.3); }
+.scroll-section blockquote { font-size: 1.3rem; font-style: italic; color: var(--accent-light); margin-bottom: 24px; border-left: 2px solid var(--accent); padding-left: 20px; text-align: left; max-width: 500px; }
+.normal-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 40px; text-align: center; }
+.normal-section .label { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.normal-section h2 { font-size: 22.5pt; font-weight: 900; margin-bottom: 20px; line-height: 1.2; font-family: 'Barlow', sans-serif; color: #f28705; }
+.normal-section p { max-width: 640px; color: var(--muted); font-size: 1.8rem; line-height: 1.25; margin-bottom: 32px; }
+.experience-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; max-width: 1100px; width: 100%; }
+.step { text-align: center; padding: 40px 20px; border: 1px solid rgba(255,255,255,.06); }
+.step-num { font-family: var(--font-sans); font-size: .7rem; letter-spacing: .2em; color: var(--accent); margin-bottom: 16px; }
+.step h3 { font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; }
+.step p { color: var(--muted); font-size: 1.8rem; line-height: 1.25; }
+.faq-list { max-width: 700px; width: 100%; }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+.faq-q { width: 100%; display: flex; justify-content: space-between; padding: 20px 0; background: none; border: none; color: var(--text); font-family: var(--font-serif); font-size: 1.05rem; text-align: left; cursor: pointer; }
+.faq-q:hover { color: var(--accent); }
+.faq-q .icon { font-size: 1.4rem; color: var(--accent); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .5s; color: var(--muted); font-size: .95rem; }
+.faq-a.open { max-height: 400px; padding-bottom: 20px; }
+.contact-btn { display: inline-flex; padding: 14px 36px; background: var(--accent); color: #0a0a0a; text-decoration: none; font-family: var(--font-sans); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; transition: opacity .3s; }
+.contact-btn:hover { opacity: .85; }
+.contact-btn-outline { display: inline-flex; padding: 14px 36px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: var(--font-sans); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; transition: background .3s, color .3s; }
+.contact-btn-outline:hover { background: var(--accent); color: #0a0a0a; }
+.contact-form { max-width: 500px; width: 100%; margin: 0 auto 32px; display: flex; flex-direction: column; gap: 16px; }
+.contact-form input, .contact-form textarea { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); color: var(--text); padding: 14px 18px; font-family: var(--font-sans); font-size: .9rem; border-radius: 2px; outline: none; transition: border-color .3s; }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+.contact-form textarea { resize: vertical; min-height: 110px; }
+.contact-form .submit-btn { padding: 14px 36px; background: var(--accent); color: #0a0a0a; border: none; font-family: var(--font-sans); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: opacity .3s; }
+.contact-form .submit-btn:hover { opacity: .85; }
+.contact-form .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+.form-status { font-family: var(--font-sans); font-size: .85rem; margin-top: 8px; min-height: 24px; }
+.form-status.success { color: #4ade80; }
+.form-status.error { color: #f87171; }
+footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-size: .75rem; color: var(--muted); }
+.portfolio-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 48px; }
+.portfolio-grid .featured { grid-column: 1 / -1; aspect-ratio: 21/9; }
+.portfolio-item { position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 3/4; }
+.portfolio-item.square { aspect-ratio: 1/1; }
+.portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s, filter .6s; filter: grayscale(.25) brightness(.85); }
+.portfolio-item:hover img { transform: scale(1.05); filter: grayscale(0) brightness(1); }
+.portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 20px 16px; background: linear-gradient(transparent, rgba(0,0,0,.85)); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay h3 { font-size: 1.1rem; margin-bottom: 2px; }
+.portfolio-overlay p { font-size: .8rem; color: var(--muted); }
+.reviews-section { padding: 100px 48px; max-width: 1000px; margin: 0 auto; text-align: center; position: relative; }
+.reviews-carousel { position: relative; max-width: 680px; margin: 48px auto 0; overflow: hidden; }
+.reviews-track { display: flex; transition: transform .55s cubic-bezier(.23,1,.32,1); }
+.review-slide { flex: 0 0 100%; padding: 0; box-sizing: border-box; }
+.review-slide-inner { position: relative; padding: 52px 48px 40px; }
+.review-slide-inner::before { content: '"'; position: absolute; top: -2px; left: 48px; font-family: 'EB Garamond', serif; font-size: 5rem; line-height: 1; color: #f28705; opacity: .2; font-style: normal; }
+.review-text { font-size: 1.8rem; line-height: 1.25; color: var(--muted); margin-bottom: 28px; font-style: italic; font-family: var(--font-serif); }
+.review-text::before { content: '« '; color: var(--accent); }
+.review-text::after { content: ' »'; color: var(--accent); }
+.review-author { font-family: var(--font-sans); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text); display: block; }
+.review-author::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); margin: 0 auto 14px; }
+.reviews-nav { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 32px; }
+.reviews-section h2 { font-size: 22.5pt; font-weight: 900; font-family: 'Barlow', sans-serif; color: #f28705; margin-bottom: 20px; line-height: 1.2; }
+.review-arrow { background: none; border: 1px solid rgba(255,255,255,.1); color: var(--muted); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: .9rem; display: flex; align-items: center; justify-content: center; transition: border-color .3s, color .3s, background .3s; line-height: 1; padding: 0; }
+.review-arrow:hover { border-color: var(--accent); color: var(--accent); background: rgba(242,135,5,.08); }
+.review-arrow:active { transform: scale(.92); }
+.review-dots { display: flex; gap: 10px; }
+.review-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.12); border: none; cursor: pointer; transition: background .35s, transform .35s; padding: 0; }
+.review-dot.active { background: var(--accent); transform: scale(1.35); }
+.review-dot:hover { background: rgba(255,255,255,.3); }
+.contact-details { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-bottom: 32px; }
+.contact-details a { color: var(--text); text-decoration: none; font-size: 1.1rem; transition: color .3s; font-family: var(--font-sans); letter-spacing: .05em; }
+.contact-details a:hover { color: var(--accent); }
+.contact-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+.instagram-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 32px 0; }
+.instagram-grid a { display: block; aspect-ratio: 1; overflow: hidden; }
+.instagram-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; filter: grayscale(.3); }
+.instagram-grid a:hover img { transform: scale(1.08); filter: grayscale(0); }
+.ig-section { padding: 60px 48px 100px; max-width: 1200px; margin: 0 auto; text-align: center; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 48px; cursor: pointer; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 24px; right: 32px; color: var(--text); font-size: 2rem; cursor: pointer; background: none; border: none; width: 48px; height: 48px; transition: opacity .3s; }
+.lightbox-close:hover { opacity: .6; }
+@media (max-width: 768px) { .portfolio-section { padding: 60px 24px; } .portfolio-grid { grid-template-columns: 1fr; } .portfolio-grid .featured { aspect-ratio: 4/3; } .instagram-grid { grid-template-columns: repeat(2, 1fr); } .ig-section { padding: 40px 24px 60px; } .reviews-section { padding: 60px 24px; } .reviews-carousel { max-width: 100%; } .review-slide-inner { padding: 40px 16px 28px; } .review-slide-inner::before { left: 16px; font-size: 3.5rem; } .review-text { font-size: 1.6rem; line-height: 1.2; } nav { padding: 16px 20px 44px; } .nav-links { display: none; } .hamburger { display: flex; } .nav-book-btn { padding: 8px 16px; font-size: .65rem; letter-spacing: .08em; } .hero h1 { font-size: 2rem; } .scroll-section { padding: 20px; } .experience-grid { grid-template-columns: 1fr; } .menu-link { font-size: clamp(1.4rem, 5vw, 2.2rem); } .lang-switch { top: 16px; right: 32px; } .lang-switch button { padding: 6px 14px; font-size: .65rem; } .contact-row { flex-direction: column; align-items: center; } }
+.scroll-indicator { position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%); z-index: 3; color: #f28705; font-size: 34px; animation: scrollBounce 1.2s infinite; cursor: pointer; }
+@keyframes scrollBounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-15px); } }
+
+/* Album Carousel */
+.albums-section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.albums-section .label { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; text-align: center; }
+.albums-section h2 { font-size: 22.5pt; font-weight: 900; text-align: center; font-family: 'Barlow', sans-serif; color: #f28705; margin-bottom: 48px; line-height: 1.2; }
+.albums-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; }
+.albums-tab { padding: 10px 28px; border: 1px solid rgba(255,255,255,.15); border-radius: 30px; background: none; color: var(--muted); font-family: var(--font-sans); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: all .3s; }
+.albums-tab:hover { border-color: var(--accent); color: var(--accent); }
+.albums-tab.active { background: var(--accent); color: #0a0a0a; border-color: var(--accent); }
+.albums-carousel { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 12px; scrollbar-width: thin; scrollbar-color: var(--accent) rgba(255,255,255,.06); }
+.albums-carousel::-webkit-scrollbar { height: 4px; }
+.albums-carousel::-webkit-scrollbar-track { background: rgba(255,255,255,.06); border-radius: 2px; }
+.albums-carousel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+.album-card { flex: 0 0 280px; scroll-snap-align: start; text-decoration: none; color: var(--text); display: block; position: relative; border-radius: 4px; overflow: hidden; transition: transform .4s; }
+.album-card:hover { transform: translateY(-4px); }
+.album-card-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; filter: grayscale(.2) brightness(.85); transition: filter .5s, transform .5s; }
+.album-card:hover .album-card-img { filter: grayscale(0) brightness(1); transform: scale(1.05); }
+.album-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 16px 16px; background: linear-gradient(transparent, rgba(0,0,0,.9)); }
+.album-card-title { font-family: var(--font-serif); font-size: 1rem; margin-bottom: 2px; }
+.album-card-count { font-family: var(--font-sans); font-size: .7rem; color: var(--muted); letter-spacing: .1em; }
+@media (max-width: 768px) { .albums-section { padding: 60px 24px; } .album-card { flex: 0 0 220px; } .albums-tab { padding: 8px 20px; font-size: .65rem; } }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header" id="header">
-  <a href="#" class="logo">Alena Naumova <span>/ фотограф</span></a>
-  <nav class="nav" id="nav">
-    <a onclick="scrollToSection('portfolio')">Портфолио</a>
-    <a onclick="scrollToSection('about')">Обо мне</a>
-    <a onclick="scrollToSection('services')">Услуги</a>
-    <a onclick="scrollToSection('philosophy')">Философия</a>
-    <a onclick="scrollToSection('contact')">Контакты</a>
-  </nav>
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-</header>
+<div class="aperture-overlay" id="aperture"></div>
+<video class="aperture-grain" id="apertureGrain" autoplay loop muted playsinline preload="none" aria-hidden="true">
+  <source src="https://media.ofskinandsouls.com/videos/OldFilmGrain.mp4" type="video/mp4">
+</video>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-label">Женский фотограф • Минск</div>
-    <h1>Я вижу <em>больше</em>,<br>чем просто кадр</h1>
-    <p>Каждая фотосессия — это история. О женщине, её силе, красоте и глубине. Я не просто фотографирую — я создаю искусство, в котором вы узнаете себя настоящую.</p>
-    <a href="#portfolio" class="hero-btn" onclick="scrollToSection('portfolio')">Смотреть портфолио</a>
+<nav id="navbar">
+  <div class="nav-left"><a href="#" class="nav-logo">Alena Naumova</a></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#hero" onclick="event.preventDefault();scrollToSection('hero')" data-i18n="nav_home">Главная</a></li>
+      <li><a href="#story" onclick="event.preventDefault();scrollToSection('story')" data-i18n="nav_story">Обо мне</a></li>
+      <li><a href="#portfolio" onclick="event.preventDefault();scrollToSection('portfolio')" data-i18n="nav_portfolio">Портфолио</a></li>
+      <li><a href="#reviews" data-i18n="nav_reviews">Отзывы</a></li>
+      <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Контакты</a></li>
+    </ul>
+    <a href="#contact" class="nav-book-btn" data-i18n="book_call">Записаться</a>
+    <button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
   </div>
-  <div class="hero-scroll">Листайте вниз</div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-curtain"></div>
+  <div class="menu-curtain-light"></div>
+  <video class="menu-grain" autoplay loop muted playsinline preload="none" aria-hidden="true">
+    <source src="https://media.ofskinandsouls.com/videos/OldFilmGrain.mp4" type="video/mp4">
+  </video>
+  <div class="menu-content">
+    <a href="#hero" onclick="event.preventDefault();scrollToSection('hero')" class="menu-link" data-i18n="menu_home">Главная</a>
+    <a href="#story" onclick="event.preventDefault();scrollToSection('story')" class="menu-link" data-i18n="menu_story">Обо мне</a>
+    <a href="#portfolio" onclick="event.preventDefault();scrollToSection('portfolio')" class="menu-link" data-i18n="menu_portfolio">Портфолио</a>
+    <a href="#reviews" class="menu-link" data-i18n="menu_reviews">Отзывы</a>
+    <a href="#services" class="menu-link" data-i18n="menu_services">Услуги и цены</a>
+    <a href="#faq" class="menu-link" data-i18n="menu_faq">Вопросы</a>
+    <a href="#contact" class="menu-link" data-i18n="menu_contact">Контакты</a>
+  </div>
+  <div class="lang-switch" id="langSwitch">
+    <button data-lang="ru" class="active">RU</button>
+    <button data-lang="en">EN</button>
+  </div>
+</div>
+
+<div class="sticky-scroll">
+<div class="sticky-inner">
+
+  <div class="scroll-section" id="hero">
+    <div class="hero-slider" id="heroSlider">
+      <div class="hero-slide active"><img src="/wfolio-assets/cover1.jpg" alt=""></div>
+      <div class="hero-slide"><img src="/wfolio-assets/cover2.jpg" alt=""></div>
+      <div class="hero-slide"><img src="/wfolio-assets/cover5.jpg" alt=""></div>
+      <div class="hero-slide"><img src="/wfolio-assets/cover6.jpg" alt=""></div>
+      <div class="hero-slide"><img src="/wfolio-assets/cover7.jpg" alt=""></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 data-i18n="hero_title">Вы — в самое сердце</h1>
+      <p data-i18n="hero_desc">Фотография — это возможность остановить время, познакомиться с собой настоящим и совершить увлекательное путешествие в мир ярких эмоций и неожиданных инсайтов. Проверим?</p>
+      <div class="scroll-indicator">↓</div>
+    </div>
+  </div>
+
+  <div class="scroll-section" id="story">
+    <div class="label" data-i18n="story_label">Обо мне</div>
+    <h2 data-i18n="story_title">Рада приветствовать Вас!</h2>
+    <p data-i18n="story_desc">Меня зовут Алёна Наумова, и для меня фотография это гораздо больше, чем кадры о жизни. Психолог, педагог, мама троих детей. Автор персональных выставок.</p>
+    <blockquote data-i18n="story_quote">« Это возможность остановить время, познакомиться с собой настоящим. »</blockquote>
+  </div>
+
+  <div class="scroll-section" id="about">
+    <div class="label" data-i18n="about_label">Фотограф</div>
+    <h2 data-i18n="about_title">Алёна Наумова</h2>
+    <p data-i18n="about_desc">Женский и семейный фотограф в Минске. Индивидуальная и семейная фотосъёмка, лавстори, фотосъёмка новорождённых и беременных, репортажная съёмка.</p>
+    <blockquote data-i18n="about_quote">« Беспристрастная констатация красоты — это не про меня. Мне интересно путешествовать глубже. »</blockquote>
+  </div>
+
+  <div class="scroll-section" id="portfolio">
+    <div class="label" data-i18n="portfolio_label">Портфолио</div>
+    <h2 data-i18n="portfolio_title">Каждая женщина —<br>целая вселенная</h2>
+    <p data-i18n="portfolio_desc">Женские и семейные съёмки. От нежной уязвимости до тёмной чувственности.</p>
+  </div>
+
+</div>
+</div>
+
+<section class="portfolio-section" id="portfoliogrid">
+  <h2 style="font-size:22.5pt;font-weight:900;font-family:'Barlow',sans-serif;color:#f28705;margin-bottom:48px;line-height:1.2;text-align:center">Избранные работы</h2>
+  <div class="portfolio-grid" style="display:none"></div>
+  <div class="albums-section" style="margin-top:32px">
+    <div class="albums-tabs">
+      <button class="albums-tab active" onclick="switchAlbumsTab(event, 'all')">Все</button>
+      <button class="albums-tab" onclick="switchAlbumsTab(event, 'family')">Семейные</button>
+      <button class="albums-tab" onclick="switchAlbumsTab(event, 'women')">Женские</button>
+    </div>
+    <div id="albumsFamilyCarousel" class="albums-carousel" style="display:none">
+      <a class="album-card" href="/albums/masha-gena-i-ruslan-ili-prostoe-schastie.html">
+        <img class="album-card-img" src="/albums/masha-gena-i-ruslan-ili-prostoe-schastie/cover.jpg" alt="Маша, Гена, Руслан и простое счастье" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Маша, Гена, Руслан и простое счастье</div><div class="album-card-count">55 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/varenka-i-eyo-tyoplyy-dom.html">
+        <img class="album-card-img" src="/albums/varenka-i-eyo-tyoplyy-dom/cover.jpg" alt="Варенька и её тёплый дом" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Варенька и её тёплый дом</div><div class="album-card-count">36 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-simonenko-i-sentyabr-v-gorode.html">
+        <img class="album-card-img" src="/albums/semya-simonenko-i-sentyabr-v-gorode/cover.jpg" alt="Семья Симоненко и тёплый сентябрь" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Симоненко и тёплый сентябрь</div><div class="album-card-count">42 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-prosolovich-i-zimnyaya-progulka.html">
+        <img class="album-card-img" src="/albums/semya-prosolovich-i-zimnyaya-progulka/cover.jpg" alt="Семья Просолович и зимняя прогулка" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Просолович и зимняя прогулка</div><div class="album-card-count">39 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-murzinyh-i-mechtatelnyy-avgust.html">
+        <img class="album-card-img" src="/albums/semya-murzinyh-i-mechtatelnyy-avgust/cover.jpg" alt="Семья Мурзиных и мечтательный август" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Мурзиных и мечтательный август</div><div class="album-card-count">40 фото</div></div>
+      </a>
+    </div>
+    <div id="albumsWomenCarousel" class="albums-carousel" style="display:none">
+      <a class="album-card" href="/albums/miroslava-yarche-solntsa.html">
+        <img class="album-card-img" src="/albums/miroslava-yarche-solntsa/cover.jpg" alt="Мирослава, осеннее солнце" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Мирослава, осеннее солнце</div><div class="album-card-count">32 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/veronika-i-govoryaschaya-tishina.html">
+        <img class="album-card-img" src="/albums/veronika-i-govoryaschaya-tishina/cover.jpg" alt="Вероника и говорящая тишина" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Вероника и говорящая тишина</div><div class="album-card-count">16 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/yana-i-magiya-zhenstvennosti.html">
+        <img class="album-card-img" src="/albums/yana-i-magiya-zhenstvennosti/cover.jpg" alt="Яна и магия женственности" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Яна и магия женственности</div><div class="album-card-count">24 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-vzglyad-vnutr-sebya.html">
+        <img class="album-card-img" src="/albums/tatyana-i-vzglyad-vnutr-sebya/cover.jpg" alt="Татьяна и взгляд внутрь себя" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и взгляд внутрь себя</div><div class="album-card-count">19 фото</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-zhenskoe-ocharovanie.html">
+        <img class="album-card-img" src="/albums/tatyana-i-zhenskoe-ocharovanie/cover.jpg" alt="Татьяна и женское очарование" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и женское очарование</div><div class="album-card-count">18 фото</div></div>
+      </a>
+    </div>
+    <div id="albumsAllCarousel" class="albums-carousel">
+      <a class="album-card" href="/albums/masha-gena-i-ruslan-ili-prostoe-schastie.html">
+        <img class="album-card-img" src="/albums/masha-gena-i-ruslan-ili-prostoe-schastie/cover.jpg" alt="Маша, Гена, Руслан и простое счастье" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Маша, Гена, Руслан и простое счастье</div><div class="album-card-count">55 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/varenka-i-eyo-tyoplyy-dom.html">
+        <img class="album-card-img" src="/albums/varenka-i-eyo-tyoplyy-dom/cover.jpg" alt="Варенька и её тёплый дом" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Варенька и её тёплый дом</div><div class="album-card-count">36 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-simonenko-i-sentyabr-v-gorode.html">
+        <img class="album-card-img" src="/albums/semya-simonenko-i-sentyabr-v-gorode/cover.jpg" alt="Семья Симоненко и тёплый сентябрь" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Симоненко и тёплый сентябрь</div><div class="album-card-count">42 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-prosolovich-i-zimnyaya-progulka.html">
+        <img class="album-card-img" src="/albums/semya-prosolovich-i-zimnyaya-progulka/cover.jpg" alt="Семья Просолович и зимняя прогулка" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Просолович и зимняя прогулка</div><div class="album-card-count">39 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/semya-murzinyh-i-mechtatelnyy-avgust.html">
+        <img class="album-card-img" src="/albums/semya-murzinyh-i-mechtatelnyy-avgust/cover.jpg" alt="Семья Мурзиных и мечтательный август" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Семья Мурзиных и мечтательный август</div><div class="album-card-count">40 фото · Семейная</div></div>
+      </a>
+      <a class="album-card" href="/albums/miroslava-yarche-solntsa.html">
+        <img class="album-card-img" src="/albums/miroslava-yarche-solntsa/cover.jpg" alt="Мирослава, осеннее солнце" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Мирослава, осеннее солнце</div><div class="album-card-count">32 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/veronika-i-govoryaschaya-tishina.html">
+        <img class="album-card-img" src="/albums/veronika-i-govoryaschaya-tishina/cover.jpg" alt="Вероника и говорящая тишина" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Вероника и говорящая тишина</div><div class="album-card-count">16 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/yana-i-magiya-zhenstvennosti.html">
+        <img class="album-card-img" src="/albums/yana-i-magiya-zhenstvennosti/cover.jpg" alt="Яна и магия женственности" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Яна и магия женственности</div><div class="album-card-count">24 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-vzglyad-vnutr-sebya.html">
+        <img class="album-card-img" src="/albums/tatyana-i-vzglyad-vnutr-sebya/cover.jpg" alt="Татьяна и взгляд внутрь себя" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и взгляд внутрь себя</div><div class="album-card-count">19 фото · Женская</div></div>
+      </a>
+      <a class="album-card" href="/albums/tatyana-i-zhenskoe-ocharovanie.html">
+        <img class="album-card-img" src="/albums/tatyana-i-zhenskoe-ocharovanie/cover.jpg" alt="Татьяна и женское очарование" loading="lazy">
+        <div class="album-card-overlay"><div class="album-card-title">Татьяна и женское очарование</div><div class="album-card-count">18 фото · Женская</div></div>
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section" id="portfolio">
-  <div class="fade-in">
-    <div class="section-label">Портфолио</div>
-    <h2 class="section-title">Избранные работы</h2>
-    <p class="section-subtitle">Каждая съёмка — это отдельная история, прожитая вместе. От нежной уязвимости до тёмной чувственности.</p>
-  </div>
-
-  <div class="portfolio-grid" style="margin-top:48px">
-    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DT5T_RLDKkk.jpg')">
-      <img src="/instagram_content/photos/DT5T_RLDKkk.jpg" alt="Портрет" loading="lazy">
-      <div class="portfolio-overlay">
-        <h3>Взгляд внутрь себя</h3>
-        <p>«Через пару минут Вы узнаете, что скрывается за этой довольной улыбкой»</p>
+<section class="reviews-section" id="reviews">
+  <div class="label" data-i18n="reviews_label">Отзывы</div>
+  <h2 data-i18n="reviews_title">Что говорят обо мне</h2>
+  <div class="reviews-carousel">
+    <div class="reviews-track" id="reviewsTrack">
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r1_text">Алена фотки супер!!! Только что с детьми смотрели им очень понравилось!!! и мне конечно)</p>
+          <p class="review-author" data-i18n="r1_author">— Светлана</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r2_text">Очень интересный взгляд изнутри</p>
+          <p class="review-author" data-i18n="r2_author">— Ольга</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r3_text">Спасибо огромное за прекрасные фото и память!</p>
+          <p class="review-author" data-i18n="r3_author">— Анна</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r4_text">Алена! Я хочу поблагодарить тебя за меня настоящую на твоих фото♥️ Наша подготовка и сам процесс были очень легкие, вдохновляющие и расслабляющие! Когда я получила фото, просматривала все с улыбкой и большой благодарностью — за честность, искренность. Я на твоих фото живая и настоящая, спасибо тебе, что рассмотрела и показала меня. Спасибо тебе за меня♥️</p>
+          <p class="review-author" data-i18n="r4_author">— Таццяна</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r5_text">Алена, благодарю тебя за чудесные кадры, фото позволили увидеть себя красивую, яркую, интересную, сильную, но в тоже время женственную!!! Восхищаюсь тем, как тебе удается подловить момент и запечатлить эмоцию, у тебя настоящий дар!!! ✨❤️</p>
+          <p class="review-author" data-i18n="r5_author">— Вероника</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r6_text">Наша съемка была про честность. Про меня без прикрас. Получилось красиво и искренне. Тебе удалось заглянуть внутрь и снять то, что происходит в тайных уголках моей души. Обожаю, когда снимают не про позирование и как правильно, а про саму жизнь, про человека и его несовершенное совершенство. После нашей съемки люблю свои морщинки, веснушки, неидеальности еще больше! Спасибо, Алёна♥️🫂 Обязательно приду ещё!</p>
+          <p class="review-author" data-i18n="r6_author">— Татьяна</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r7_text">Алёна, твои фотографии волшебны! Для меня это искусство. Съёмка получилась живая, лёгкая. Мне очень комфортно с тобой работать. Жду с нетерпением следующий раз. Спасибо за твоё видение меня. За твоё мастерство и профессионализм!</p>
+          <p class="review-author" data-i18n="r7_author">— Екатерина</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r8_text">Моя великолепная талантливейшая волшебница!!!!! Спасибо что словила объективом моего внутреннего чертенка и ранимую девочку, все еще способную мечтать и верить. Спасибо за напоминание, что в этих чаще уставших глазах способна гореть страсть. Твои фотографии передают всю глубину чувств, искренние улыбки, озорной смех, грусть в глазах, сомнение, переживания — ты видишь нас настоящих. И как же я счастлива, что благодаря тебе я вижу себя красивой и знакомлюсь с собой.</p>
+          <p class="review-author" data-i18n="r8_author">— Яна</p>
+        </div>
+      </div>
+      <div class="review-slide">
+        <div class="review-slide-inner">
+          <p class="review-text" data-i18n="r9_text">Спасибо за невероятные эмоции, которые я получаю, глядя на эти фото!</p>
+          <p class="review-author" data-i18n="r9_author">— Анастасия</p>
+        </div>
       </div>
     </div>
-
-    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DYxQViyiufr.jpg')">
-      <img src="/instagram_content/photos/DYxQViyiufr.jpg" alt="Женщина и искусство" loading="lazy">
-      <div class="portfolio-overlay">
-        <h3>Женщина и картина</h3>
-        <p>Что общего у Женщины и картины? Присмотрись, дорогой критик.</p>
-      </div>
-    </div>
-
-    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DYzk0OTinbb.jpg')">
-      <img src="/instagram_content/photos/DYzk0OTinbb.jpg" alt="Тёмная сторона" loading="lazy">
-      <div class="portfolio-overlay">
-        <h3>Тёмная сторона</h3>
-        <p>Это рассказ о тёмной стороне женщины — манкой, соблазнительной, властной...</p>
-      </div>
-    </div>
-
-    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DW6oVVdjLqm.jpg')">
-      <img src="/instagram_content/photos/DW6oVVdjLqm.jpg" alt="Женская сила" loading="lazy">
-      <div class="portfolio-overlay">
-        <h3>Просто подумай: КТО?</h3>
-        <p>Каждая женщина — целая вселенная</p>
-      </div>
-    </div>
-
-    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DWMk64EjCrr.jpg')">
-      <img src="/instagram_content/photos/DWMk64EjCrr.jpg" alt="Отпуская прошлое" loading="lazy">
-      <div class="portfolio-overlay">
-        <h3>Отпуская прошлое</h3>
-        <p>«Мне всегда было невозможно трудно отпускать прошлое... Но приходят перемены»</p>
-      </div>
-    </div>
-
-    <div class="portfolio-item" onclick="openLightbox('/instagram_content/photos/DRwwj_YjAJN.jpg')">
-      <img src="/instagram_content/photos/DRwwj_YjAJN.jpg" alt="Женщина — палитра" loading="lazy">
-      <div class="portfolio-overlay">
-        <h3>Женщина — это не о простом</h3>
-        <p>Целая палитра полу-... Полувзгляд, полужест, полутон...</p>
-      </div>
+    <div class="reviews-nav">
+      <button class="review-arrow review-prev" id="reviewPrev" aria-label="Предыдущий">←</button>
+      <div class="review-dots" id="reviewDots"></div>
+      <button class="review-arrow review-next" id="reviewNext" aria-label="Следующий">→</button>
     </div>
   </div>
 </section>
 
-<!-- INSTAGRAM GRID -->
-<section class="instagram-section">
-  <div class="section-label">За портфолио в Instagram</div>
-  <h2 class="section-title" style="margin-bottom:8px">@alena_naumova_photo</h2>
-  <p class="section-subtitle" style="margin:0 auto 24px;text-align:center">Больше работ — в моём Instagram</p>
+<section class="ig-section">
+  <div class="label" data-i18n="ig_label">Больше работ в Instagram</div>
+  <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);margin-bottom:8px;font-weight:400">@alena_naumova_photo</h2>
   <div class="instagram-grid">
-    <a href="https://www.instagram.com/p/DT5T_RLDKkk/" target="_blank">
-      <img src="/instagram_content/photos/DT5T_RLDKkk.jpg" alt="" loading="lazy">
-    </a>
-    <a href="https://www.instagram.com/p/DYxQViyiufr/" target="_blank">
-      <img src="/instagram_content/photos/DYxQViyiufr.jpg" alt="" loading="lazy">
-    </a>
-    <a href="https://www.instagram.com/p/DYzk0OTinbb/" target="_blank">
-      <img src="/instagram_content/photos/DYzk0OTinbb.jpg" alt="" loading="lazy">
-    </a>
-    <a href="https://www.instagram.com/p/DW6oVVdjLqm/" target="_blank">
-      <img src="/instagram_content/photos/DW6oVVdjLqm.jpg" alt="" loading="lazy">
-    </a>
-    <a href="https://www.instagram.com/p/DWMk64EjCrr/" target="_blank">
-      <img src="/instagram_content/photos/DWMk64EjCrr.jpg" alt="" loading="lazy">
-    </a>
-    <a href="https://www.instagram.com/p/DRwwj_YjAJN/" target="_blank">
-      <img src="/instagram_content/photos/DRwwj_YjAJN.jpg" alt="" loading="lazy">
-    </a>
+    <a href="https://www.instagram.com/p/DT5T_RLDKkk/" target="_blank"><img src="/photos/DT5T_RLDKkk.jpg" alt="" loading="lazy"></a>
+    <a href="https://www.instagram.com/p/DYxQViyiufr/" target="_blank"><img src="/photos/DYxQViyiufr.jpg" alt="" loading="lazy"></a>
+    <a href="https://www.instagram.com/p/DYzk0OTinbb/" target="_blank"><img src="/photos/DYzk0OTinbb.jpg" alt="" loading="lazy"></a>
+    <a href="https://www.instagram.com/p/DW6oVVdjLqm/" target="_blank"><img src="/photos/DW6oVVdjLqm.jpg" alt="" loading="lazy"></a>
+    <a href="https://www.instagram.com/p/DWMk64EjCrr/" target="_blank"><img src="/photos/DWMk64EjCrr.jpg" alt="" loading="lazy"></a>
+    <a href="https://www.instagram.com/p/DRwwj_YjAJN/" target="_blank"><img src="/photos/DRwwj_YjAJN.jpg" alt="" loading="lazy"></a>
   </div>
-  <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" class="hero-btn" style="margin-top:24px">Подписаться в Instagram</a>
+  <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" class="hero-cta" style="margin-top:20px" data-i18n="ig_btn">Подписаться в Instagram</a>
 </section>
 
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="about">
-    <div>
-      <img src="/instagram_content/photos/DT5T_RLDKkk.jpg" alt="Алена Наумова" class="about-image">
-    </div>
-    <div class="about-text fade-in">
-      <div class="section-label">Обо мне</div>
-      <h2>За каждым кадром — художник</h2>
-      <p>Когда-то я почти свернула на путь художника. В четвёртом классе мои работы отобрали для поступления в художественный лицей. Жизнь распорядилась иначе, но искусство всё равно нашло меня — через объектив.</p>
-      <p>В моей копилке несколько персональных выставок. Многие из работ можно смело приравнять к произведениям современного искусства. На мои съёмки приезжают люди со всего Минска и не только.</p>
-      <p>Я не делаю «просто фото». Я создаю истории, в которых каждая женщина раскрывается с новой, неожиданной стороны.</p>
-      <div class="about-signature">— Алёна Наумова</div>
-    </div>
+<section class="normal-section" id="services">
+  <div class="label" data-i18n="services_label">Услуги</div>
+  <h2 data-i18n="services_title">Создаём историю вместе</h2>
+  <div class="experience-grid">
+    <div class="step"><p class="step-num">01</p><h3 data-i18n="s1_title">Индивидуальная фотосессия</h3><p data-i18n="s1_desc">Раскрытие вашей уникальности. Создание образа от идеи до воплощения. Комфортная атмосфера.</p></div>
+    <div class="step"><p class="step-num">02</p><h3 data-i18n="s2_title">Семейная съёмка</h3><p data-i18n="s2_desc">Тёплые, искренние моменты вашей семьи. Фотосъёмка новорождённых и беременных.</p></div>
+    <div class="step"><p class="step-num">03</p><h3 data-i18n="s3_title">Love Story / Репортаж</h3><p data-i18n="s3_desc">История ваших отношений в кадрах, которые будут греть сердце годами. Естественно, тепло, искренне.</p></div>
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<section class="philosophy" id="philosophy">
-  <blockquote>
-    «Имеет ли значение, что я пишу, или важен лишь кадр?<br>
-    Имеет ли значение, о чём эта история, или важен лишь кадр?<br>
-    Что имеет значение для ВАС?»
-  </blockquote>
-  <cite>— из поста Алёны</cite>
-</section>
-
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="fade-in" style="text-align:center">
-    <div class="section-label">Услуги</div>
-    <h2 class="section-title">Создаём историю вместе</h2>
-    <p class="section-subtitle" style="margin:0 auto">Каждая фотосессия — индивидуальный подход и глубокая проработка образа</p>
-  </div>
-
-  <div class="services-grid">
-    <div class="service-card fade-in">
-      <div class="num">01</div>
-      <h3>Индивидуальная фотосессия</h3>
-      <p>Раскрытие вашей уникальности. Создание образа от идеи до воплощения. Комфортная атмосфера, в которой вы забудете о камере.</p>
-      <div class="price">от 250 BYN</div>
-    </div>
-    <div class="service-card fade-in">
-      <div class="num">02</div>
-      <h3>Творческая съёмка</h3>
-      <p>Для тех, кто готов к экспериментам. Художественные образы, нестандартные локации, работа с эмоцией и драматургией кадра.</p>
-      <div class="price">от 350 BYN</div>
-    </div>
-    <div class="service-card fade-in">
-      <div class="num">03</div>
-      <h3>Love Story / Пара</h3>
-      <p>История ваших отношений в кадрах, которые будут греть сердце годами. Естественно, тепло, искренне.</p>
-      <div class="price">от 300 BYN</div>
-    </div>
+<section class="normal-section" id="faq">
+  <div class="label" data-i18n="faq_label">Вопросы</div>
+  <h2 data-i18n="faq_title">Часто задаваемые вопросы</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq1_q">Сколько стоит фотосессия?</span><span class="icon">+</span></button><div class="faq-a" data-i18n="faq1_a">Индивидуальная фотосессия — от 250 BYN, творческая съёмка — от 350 BYN. Точная стоимость зависит от сложности образа, количества часов и локации.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq2_q">Как долго длится съёмка?</span><span class="icon">+</span></button><div class="faq-a" data-i18n="faq2_a">Обычно от 1 до 3 часов. Всё индивидуально — обсудим на встрече.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq3_q">Что взять с собой на съёмку?</span><span class="icon">+</span></button><div class="faq-a" data-i18n="faq3_a">Я помогу подобрать образы и расскажу всё необходимое при подготовке. Главное — хорошее настроение!</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq4_q">Нужна ли подготовка?</span><span class="icon">+</span></button><div class="faq-a" data-i18n="faq4_a">Нет. Я создаю комфортную атмосферу, в которой вы забудете о камере. Моя задача — показать вас настоящую.</div></div>
+    <div class="faq-item"><button class="faq-q"><span data-i18n="faq5_q">Какие направления съёмок?</span><span class="icon">+</span></button><div class="faq-a" data-i18n="faq5_a">Индивидуальная и семейная фотосъёмка, лавстори, фотосъёмка новорождённых и беременных, репортажная съёмка. Минск и вся Беларусь.</div></div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="fade-in">
-    <h2>Давайте создадим<br>вашу историю</h2>
-    <p>Напишите мне, и мы обсудим вашу идею<br>Я нахожусь в Минске и провожу съёмки по всей Беларуси</p>
-    <div class="contact-links">
-      <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" class="contact-link">Instagram</a>
-      <a href="https://t.me/alena_naumova_photo" target="_blank" class="contact-link">Telegram</a>
-      <a href="mailto:alena@naumova.photo" class="contact-link">Email</a>
-    </div>
+<section class="normal-section" id="contact">
+  <div class="label" data-i18n="contact_label">Давайте поговорим</div>
+  <h2 data-i18n="contact_title">Готовы создать свою историю?</h2>
+  <p data-i18n="contact_desc">Минск и вся Беларусь. Напишите мне, и мы обсудим вашу идею.</p>
+  <div class="contact-details">
+    <a href="tel:+375293247202">+375 (29) 324-72-02</a>
+  </div>
+  <form class="contact-form" id="contactForm" onsubmit="return submitContact(event)">
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    <input type="text" name="contact" placeholder="Телефон, email или Telegram" required>
+    <textarea name="message" placeholder="Опишите вашу идею, пожелания..." required></textarea>
+    <button type="submit" class="submit-btn" data-i18n="contact_send">Отправить заявку</button>
+    <div class="form-status" id="formStatus"></div>
+  </form>
+  <div class="contact-row">
+    <a href="https://wa.me/375293247202" target="_blank" class="contact-btn" data-i18n="contact_wa">Написать в WhatsApp →</a>
+    <a href="https://t.me/alena_naumova_photo" target="_blank" class="contact-btn-outline" data-i18n="contact_tg">Telegram</a>
+    <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" class="contact-btn-outline" data-i18n="contact_ig">Instagram</a>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <span>© 2026 Alena Naumova — <a href="https://www.instagram.com/alena_naumova_photo" target="_blank">@alena_naumova_photo</a></span>
-  <span>Женский фотограф • Минск</span>
+<footer>
+  <p data-i18n="footer">© Alena Naumova — <a href="https://www.instagram.com/alena_naumova_photo" target="_blank" style="color:var(--muted);text-decoration:none">@alena_naumova_photo</a> | +375 (29) 324-72-02</p>
 </footer>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
-  // Scroll effect for header
-  window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+var L = {
+  ru: {
+    nav_home: "Главная", nav_portfolio: "Портфолио", nav_story: "Обо мне", nav_reviews: "Отзывы", nav_services: "Услуги", nav_contact: "Контакты",
+    book_call: "Записаться", book_call_arrow: "Записаться →",
+    menu_home: "Главная", menu_portfolio: "Портфолио", menu_story: "Обо мне",
+    menu_reviews: "Отзывы", menu_services: "Услуги и цены", menu_faq: "Вопросы", menu_contact: "Контакты",
+    menu_logo: "АЛЁНА НАУМОВА",
+    hero_title: "Вы — в самое сердце",
+    hero_desc: "Фотография — это возможность остановить время, познакомиться с собой настоящим и совершить увлекательное путешествие в мир ярких эмоций и неожиданных инсайтов. Проверим?",
+    portfolio_label: "Портфолио",
+    portfolio_title: "Каждая женщина —<br>целая вселенная",
+    portfolio_desc: "Женские и семейные съёмки. От нежной уязвимости до тёмной чувственности.",
+    story_label: "Обо мне",
+    story_title: "Рада приветствовать Вас!",
+    story_desc: "Меня зовут Алёна Наумова, и для меня фотография это гораздо больше, чем кадры о жизни. Психолог, педагог, мама троих детей. Автор персональных выставок.",
+    story_quote: "« Это возможность остановить время, познакомиться с собой настоящим. »",
+    about_label: "Фотограф",
+    about_title: "Алёна Наумова",
+    about_desc: "Женский и семейный фотограф в Минске. Индивидуальная и семейная фотосъёмка, лавстори, фотосъёмка новорождённых и беременных, репортажная съёмка.",
+    about_quote: "« Беспристрастная констатация красоты — это не про меня. Мне интересно путешествовать глубже. »",
+    gallery_label: "Избранные работы",
+    p1_title: "Семейные съёмки",
+    p1_desc: "Тёплые, искренние моменты вашей семьи",
+    reviews_label: "Отзывы",
+    reviews_title: "Что говорят обо мне",
+    r1_text: "Алена фотки супер!!! Только что с детьми смотрели им очень понравилось!!! и мне конечно)",
+    r1_author: "— Светлана",
+    r2_text: "Очень интересный взгляд изнутри",
+    r2_author: "— Ольга",
+    r3_text: "Спасибо огромное за прекрасные фото и память!",
+    r3_author: "— Анна",
+    r4_text: "Алена! Я хочу поблагодарить тебя за меня настоящую на твоих фото♥️ Наша подготовка и сам процесс были очень легкие, вдохновляющие и расслабляющие! Когда я получила фото, просматривала все с улыбкой и большой благодарностью — за честность, искренность. Я на твоих фото живая и настоящая, спасибо тебе, что рассмотрела и показала меня. Спасибо тебе за меня♥️",
+    r4_author: "— Таццяна",
+    r5_text: "Алена, благодарю тебя за чудесные кадры, фото позволили увидеть себя красивую, яркую, интересную, сильную, но в тоже время женственную!!! Восхищаюсь тем, как тебе удается подловить момент и запечатлить эмоцию, у тебя настоящий дар!!! ✨❤️",
+    r5_author: "— Вероника",
+    r6_text: "Наша съемка была про честность. Про меня без прикрас. Получилось красиво и искренне. Тебе удалось заглянуть внутрь и снять то, что происходит в тайных уголках моей души. Обожаю, когда снимают не про позирование и как правильно, а про саму жизнь, про человека и его несовершенное совершенство. После нашей съемки люблю свои морщинки, веснушки, неидеальности еще больше! Спасибо, Алёна♥️🫂 Обязательно приду ещё!",
+    r6_author: "— Татьяна",
+    r7_text: "Алёна, твои фотографии волшебны! Для меня это искусство. Съёмка получилась живая, лёгкая. Мне очень комфортно с тобой работать. Жду с нетерпением следующий раз. Спасибо за твоё видение меня. За твоё мастерство и профессионализм!",
+    r7_author: "— Екатерина",
+    r8_text: "Моя великолепная талантливейшая волшебница!!!!! Спасибо что словила объективом моего внутреннего чертенка и ранимую девочку, все еще способную мечтать и верить. Спасибо за напоминание, что в этих чаще уставших глазах способна гореть страсть. Твои фотографии передают всю глубину чувств, искренние улыбки, озорной смех, грусть в глазах, сомнение, переживания — ты видишь нас настоящих. И как же я счастлива, что благодаря тебе я вижу себя красивой и знакомлюсь с собой.",
+    r8_author: "— Яна",
+    r9_text: "Спасибо за невероятные эмоции, которые я получаю, глядя на эти фото!",
+    r9_author: "— Анастасия",
+    ig_label: "Больше работ в Instagram",
+    ig_btn: "Подписаться в Instagram",
+    services_label: "Услуги",
+    services_title: "Создаём историю вместе",
+    s1_title: "Индивидуальная фотосессия",
+    s1_desc: "Раскрытие вашей уникальности. Создание образа от идеи до воплощения. Комфортная атмосфера.",
+    s2_title: "Семейная съёмка",
+    s2_desc: "Тёплые, искренние моменты вашей семьи. Фотосъёмка новорождённых и беременных.",
+    s3_title: "Love Story / Репортаж",
+    s3_desc: "История ваших отношений в кадрах, которые будут греть сердце годами. Естественно, тепло, искренне.",
+    faq_label: "Вопросы",
+    faq_title: "Часто задаваемые вопросы",
+    faq1_q: "Сколько стоит фотосессия?",
+    faq1_a: "Индивидуальная фотосессия — от 250 BYN, творческая съёмка — от 350 BYN. Точная стоимость зависит от сложности образа, количества часов и локации.",
+    faq2_q: "Как долго длится съёмка?",
+    faq2_a: "Обычно от 1 до 3 часов. Всё индивидуально — обсудим на встрече.",
+    faq3_q: "Что взять с собой на съёмку?",
+    faq3_a: "Я помогу подобрать образы и расскажу всё необходимое при подготовке. Главное — хорошее настроение!",
+    faq4_q: "Нужна ли подготовка?",
+    faq4_a: "Нет. Я создаю комфортную атмосферу, в которой вы забудете о камере. Моя задача — показать вас настоящую.",
+    faq5_q: "Какие направления съёмок?",
+    faq5_a: "Индивидуальная и семейная фотосъёмка, лавстори, фотосъёмка новорождённых и беременных, репортажная съёмка. Минск и вся Беларусь.",
+    contact_label: "Давайте поговорим",
+    contact_title: "Готовы создать свою историю?",
+    contact_desc: "Минск и вся Беларусь. Напишите мне, и мы обсудим вашу идею.",
+    contact_send: "Отправить заявку",
+    contact_wa: "Написать в WhatsApp →",
+    contact_tg: "Telegram",
+    contact_ig: "Instagram",
+    footer: "© Alena Naumova — @alena_naumova_photo | +375 (29) 324-72-02"
+  },
+  en: {
+    nav_home: "Home", nav_portfolio: "Portfolio", nav_story: "About", nav_reviews: "Reviews", nav_services: "Services", nav_contact: "Contact",
+    book_call: "Book a Call", book_call_arrow: "Book a call →",
+    menu_home: "Home", menu_portfolio: "Portfolio", menu_story: "About Me",
+    menu_reviews: "Reviews", menu_services: "Services & Prices", menu_faq: "FAQ", menu_contact: "Contact",
+    menu_logo: "ALENA NAUMOVA",
+    hero_title: "You — right into the heart",
+    hero_desc: "Photography is an opportunity to stop time, meet your true self and embark on a fascinating journey into a world of vivid emotions and unexpected insights. Shall we?",
+    portfolio_label: "Portfolio",
+    portfolio_title: "Every woman is<br>a whole universe",
+    portfolio_desc: "Female and family shoots. From tender vulnerability to dark sensuality.",
+    story_label: "About Me",
+    story_title: "Welcome!",
+    story_desc: "My name is Alena Naumova, and for me photography is much more than just frames about life. Psychologist, teacher, mother of three. Author of personal exhibitions.",
+    story_quote: "« An opportunity to stop time, to meet your true self. »",
+    about_label: "Photographer",
+    about_title: "Alena Naumova",
+    about_desc: "Female and family photographer in Minsk. Individual and family photoshoots, love stories, newborn and maternity photography, reportage.",
+    about_quote: "« Impartial recording of beauty is not about me. I'm interested in traveling deeper. »",
+    gallery_label: "Featured work",
+    p1_title: "Family Shoots",
+    p1_desc: "Warm, sincere moments of your family",
+    reviews_label: "Reviews",
+    reviews_title: "What people say",
+    r1_text: "Alena, the photos are super!!! Just watched them with the kids, they loved them!!! and me too :)",
+    r1_author: "— Svetlana",
+    r2_text: "A very interesting view from the inside",
+    r2_author: "— Olga",
+    r3_text: "Thank you so much for the wonderful photos and memories!",
+    r3_author: "— Anna",
+    r4_text: "Alena! I want to thank you for capturing the real me in your photos♥️ Our preparation and the shoot itself were so easy, inspiring and relaxing! When I received the photos, I looked through them all with a smile and great gratitude — for honesty, sincerity. I am alive and real in your photos, thank you for seeing and showing me. Thank you for me♥️",
+    r4_author: "— Tatsiana",
+    r5_text: "Alena, thank you for the wonderful shots, the photos allowed me to see myself as beautiful, bright, interesting, strong, yet feminine!!! I admire how you manage to capture the moment and freeze the emotion, you have a true gift!!! ✨❤️",
+    r5_author: "— Veronika",
+    r6_text: "Our shoot was about honesty. About me without embellishment. It turned out beautiful and sincere. You managed to look inside and capture what happens in the secret corners of my soul. I love when shooting is not about posing and how to do it right, but about life itself, about a person and their imperfect perfection. After our shoot I love my wrinkles, freckles, imperfections even more! Thank you, Alena♥️🫂 I'll definitely come back!",
+    r6_author: "— Tatiana",
+    r7_text: "Alena, your photographs are magical! For me this is art. The shoot was lively, easy. I'm very comfortable working with you. I can't wait for the next time. Thank you for your vision of me. For your mastery and professionalism!",
+    r7_author: "— Ekaterina",
+    r8_text: "My magnificent, most talented magician!!!!! Thank you for capturing my inner imp and the vulnerable girl who can still dream and believe through your lens. Thank you for reminding me that passion can still burn in these tired eyes. Your photos convey the full depth of feelings, sincere smiles, mischievous laughter, sadness in the eyes, doubt, experiences — you see the real us. And I am so happy that thanks to you I see myself as beautiful and get to know myself.",
+    r8_author: "— Yana",
+    r9_text: "Thank you for the incredible emotions I get looking at these photos!",
+    r9_author: "— Anastasia",
+    ig_label: "More work on Instagram",
+    ig_btn: "Follow on Instagram",
+    services_label: "Services",
+    services_title: "Creating a story together",
+    s1_title: "Individual Photoshoot",
+    s1_desc: "Revealing your uniqueness. Creating an image from idea to execution. Comfortable atmosphere.",
+    s2_title: "Family Shoot",
+    s2_desc: "Warm, sincere moments of your family. Newborn and maternity photography.",
+    s3_title: "Love Story / Reportage",
+    s3_desc: "The story of your relationship in frames that will warm your heart for years. Natural, warm, sincere.",
+    faq_label: "FAQ",
+    faq_title: "Frequently asked questions",
+    faq1_q: "How much does a photoshoot cost?",
+    faq1_a: "Individual photoshoot from 250 BYN, creative shoot from 350 BYN. The exact price depends on complexity and location.",
+    faq2_q: "How long does a shoot take?",
+    faq2_a: "Usually 1 to 3 hours. Everything is individual — we'll discuss at our meeting.",
+    faq3_q: "What should I bring?",
+    faq3_a: "I'll help you choose looks and tell you everything you need during preparation. The main thing — good mood!",
+    faq4_q: "Do I need to prepare?",
+    faq4_a: "No. I create a comfortable atmosphere where you forget about the camera. My job is to show the real you.",
+    faq5_q: "What types of shoots?",
+    faq5_a: "Individual and family photoshoots, love stories, newborn and maternity photography, reportage. Minsk and all of Belarus.",
+    contact_label: "Let's Talk",
+    contact_title: "Ready to create your story?",
+    contact_desc: "Minsk and all of Belarus. Write to me and we'll discuss your idea.",
+    contact_send: "Send request",
+    contact_wa: "Write on WhatsApp →",
+    contact_tg: "Telegram",
+    contact_ig: "Instagram",
+    footer: "© Alena Naumova — @alena_naumova_photo | +375 (29) 324-72-02"
+  }
+};
+
+var currentLang = localStorage.getItem('lang') || 'ru';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (L[lang] && L[lang][key]) {
+      if (L[lang][key].indexOf('<br>') !== -1) { el.innerHTML = L[lang][key]; }
+      else { el.textContent = L[lang][key]; }
+    }
   });
+  document.querySelectorAll('#langSwitch button').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+}
+document.querySelectorAll('#langSwitch button').forEach(function(btn) {
+  btn.addEventListener('click', function() { setLang(this.getAttribute('data-lang')); });
+});
+setLang(currentLang);
 
-  // Smooth scroll
-  function scrollToSection(id) {
-    document.getElementById('nav').classList.remove('open');
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+(function() {
+  var slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  var current = 0;
+  setInterval(function() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
+})();
 
-  // Mobile menu
-  function toggleMenu() {
-    document.getElementById('nav').classList.toggle('open');
-  }
+function scrollToSection(id) {
+  var sticky = document.querySelector('.sticky-scroll');
+  if (!sticky) return;
+  var h = sticky.offsetHeight, vh = window.innerHeight;
+  var scrollable = h - vh;
+  var top = sticky.getBoundingClientRect().top + window.scrollY;
+  var targets = { hero: 0.01, story: 0.36, about: 0.52, portfolio: 0.89 };
+  var o = targets[id] || 0;
+  window.scrollTo({ top: top + o * scrollable, behavior: 'smooth' });
+}
 
-  // Lightbox
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox(e) {
-    if (e && e.target !== document.getElementById('lightbox-img')) {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
+(function() {
+  var overlay = document.getElementById('aperture');
+  var grain = document.getElementById('apertureGrain');
+  var sections = document.querySelectorAll('.scroll-section');
+  var grainVis = false;
+  function setMask(val) {
+    if (val > 0.05) {
+      grain.style.opacity = Math.min(0.5, (val - 0.05) * 1.2);
+      if (!grainVis) { grain.play().catch(function(){}); grainVis = true; }
+    } else {
+      grain.style.opacity = '0';
+      if (grainVis) { grain.pause(); grainVis = false; }
+    }
+    if (val >= 0.95) {
+      overlay.style.webkitMaskImage = 'none';
+      overlay.style.maskImage = 'none';
+    } else {
+      var tPct = Math.max(-10, 100 * (1 - val) - 5);
+      var bPct = Math.min(100, 100 * (1 - val) + 3);
+      overlay.style.webkitMaskImage = 'radial-gradient(circle at 50% 50%, transparent ' + tPct + '%, black ' + bPct + '%)';
+      overlay.style.maskImage = 'radial-gradient(circle at 50% 50%, transparent ' + tPct + '%, black ' + bPct + '%)';
     }
   }
-
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // Close lightbox on escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  function easeIn(t) { return t * t * t; }
+  var ticking = false;
+  var apertureSmooth = 0;
+  function update() {
+    var sticky = document.querySelector('.sticky-scroll');
+    if (!sticky) return;
+    var h = sticky.offsetHeight, vh = window.innerHeight;
+    var scrollable = h - vh;
+    var rect = sticky.getBoundingClientRect();
+    var o = Math.max(0, Math.min(1, -rect.top / scrollable));
+    var hero = sections[0], port = sections[1], story = sections[2], about = sections[3];
+    var aTarget = 0, hOp = 0, pOp = 0, sOp = 0, aOp = 0;
+    if (o < 0.10) { hOp = 1; aTarget = 0; }
+    else if (o < 0.18) { var t = (o - 0.10) / 0.08; hOp = 1; aTarget = easeIn(t); }
+    else if (o < 0.20) { hOp = 1; aTarget = 1; }
+    else if (o < 0.24) { var t = (o - 0.20) / 0.04; hOp = 1 - t; pOp = t; aTarget = 1; }
+    else if (o < 0.28) { pOp = 1; aTarget = 1; }
+    else if (o < 0.36) { var t = (o - 0.28) / 0.08; pOp = 1; aTarget = 1 - easeIn(t); }
+    else if (o < 0.42) { pOp = 1; aTarget = 0; }
+    else if (o < 0.50) { var t = (o - 0.42) / 0.08; pOp = 1 - t; sOp = t; aTarget = 0; }
+    else if (o < 0.54) { sOp = 1; aTarget = 0; }
+    else if (o < 0.62) { var t = (o - 0.54) / 0.08; sOp = 1; aTarget = easeIn(t); }
+    else if (o < 0.66) { sOp = 1; aTarget = 1; }
+    else if (o < 0.72) { var t = (o - 0.66) / 0.06; sOp = 1 - t; aOp = t; aTarget = 1; }
+    else if (o < 0.76) { aOp = 1; aTarget = 1; }
+    else if (o < 0.84) { var t = (o - 0.76) / 0.08; aOp = 1; aTarget = 1 - easeIn(t); }
+    else { aOp = 1; aTarget = 0; }
+    hero.style.opacity = hOp; port.style.opacity = pOp;
+    story.style.opacity = sOp; about.style.opacity = aOp;
+    apertureSmooth += (aTarget - apertureSmooth) * 0.25;
+    setMask(apertureSmooth);
+  }
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(function() { update(); ticking = false; }); ticking = true; }
   });
+  setMask(0); update();
+})();
+
+/* Reviews carousel */
+(function(){
+  var track = document.getElementById('reviewsTrack');
+  var slides = track && track.querySelectorAll('.review-slide');
+  var dotsContainer = document.getElementById('reviewDots');
+  var prevBtn = document.getElementById('reviewPrev');
+  var nextBtn = document.getElementById('reviewNext');
+  if (!track || !slides || slides.length < 2) return;
+  var current = 0, timer, isPaused = false;
+  function goTo(idx) {
+    if (idx < 0) idx = slides.length - 1;
+    if (idx >= slides.length) idx = 0;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var dots = dotsContainer.querySelectorAll('.review-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === idx);
+    }
+    current = idx;
+  }
+  for (var i = 0; i < slides.length; i++) {
+    (function(i){
+      var dot = document.createElement('button');
+      dot.className = 'review-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Отзыв ' + (i+1));
+      dot.addEventListener('click', function(){ goTo(i); resetTimer(); });
+      dotsContainer.appendChild(dot);
+    })(i);
+  }
+  function nextSlide() { goTo(current + 1); }
+  function prevSlide() { goTo(current - 1); }
+  function startTimer() { if (!isPaused) timer = setInterval(nextSlide, 5000); }
+  function resetTimer() { clearInterval(timer); startTimer(); }
+  if (prevBtn) prevBtn.addEventListener('click', function(){ prevSlide(); resetTimer(); });
+  if (nextBtn) nextBtn.addEventListener('click', function(){ nextSlide(); resetTimer(); });
+  var container = track.parentElement;
+  container.addEventListener('mouseenter', function(){ isPaused = true; clearInterval(timer); });
+  container.addEventListener('mouseleave', function(){ isPaused = false; startTimer(); });
+  container.addEventListener('touchstart', function(e){ window._rx = e.touches[0].clientX; }, {passive:true});
+  container.addEventListener('touchend', function(e){
+    var diff = window._rx - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { if (diff > 0) nextSlide(); else prevSlide(); resetTimer(); }
+  }, {passive:true});
+  document.addEventListener('keydown', function(e) {
+    var sec = document.getElementById('reviews');
+    if (!sec) return;
+    var rect = sec.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+    if (e.key === 'ArrowLeft') { prevSlide(); resetTimer(); }
+    if (e.key === 'ArrowRight') { nextSlide(); resetTimer(); }
+  });
+  startTimer();
+})();
+
+(function() {
+  var overlay = document.getElementById('menuOverlay');
+  var hamburger = document.getElementById('hamburger');
+  var links = overlay.querySelectorAll('.menu-link');
+  function openMenu() { overlay.classList.add('open'); document.body.classList.add('menu-open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { overlay.classList.remove('open'); document.body.classList.remove('menu-open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  links.forEach(function(l) { l.addEventListener('click', function() { closeMenu(); }); });
+  window.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu(); });
+})();
+
+var nav = document.getElementById('navbar');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var a = this.nextElementSibling;
+    var open = a.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(function(el) { el.classList.remove('open'); });
+    if (!open) a.classList.add('open');
+  });
+});
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (!e || e.target !== document.getElementById('lightbox-img')) {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+});
+
+function switchAlbumsTab(e, tab) {
+  var tabs = document.querySelectorAll('.albums-tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  e.target.classList.add('active');
+  document.getElementById('albumsAllCarousel').style.display = tab === 'all' ? 'flex' : 'none';
+  document.getElementById('albumsFamilyCarousel').style.display = tab === 'family' ? 'flex' : 'none';
+  document.getElementById('albumsWomenCarousel').style.display = tab === 'women' ? 'flex' : 'none';
+}
+
+function submitContact(e) {
+  e.preventDefault();
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+  var btn = form.querySelector('.submit-btn');
+  if (btn.disabled) return false;
+  var data = { name: form.name.value.trim(), contact: form.contact.value.trim(), message: form.message.value.trim() };
+  if (!data.name || !data.contact) { status.className = 'form-status error'; status.textContent = 'Заполните имя и контакт'; return false; }
+  btn.disabled = true; btn.textContent = 'Отправка...';
+  status.className = 'form-status'; status.textContent = '';
+  fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+  .then(function(r) { return r.json(); })
+  .then(function(resp) {
+    if (resp.success) {
+      status.className = 'form-status success';
+      status.textContent = resp.message || 'Спасибо! Ваше сообщение отправлено.';
+      form.name.value = ''; form.contact.value = ''; form.message.value = '';
+    } else {
+      status.className = 'form-status error';
+      status.textContent = 'Ошибка: ' + (resp.error || 'повторите попытку');
+    }
+  })
+  .catch(function() {
+    status.className = 'form-status error';
+    status.textContent = 'Ошибка соединения. Попробуйте позже или напишите в Telegram.';
+  })
+  .finally(function() { btn.disabled = false; btn.textContent = 'Отправить заявку'; });
+  return false;
+}
 </script>
-
 </body>
 </html>

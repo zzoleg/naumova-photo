@@ -196,7 +196,7 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
     <ul class="nav-links">
       <li><a href="#hero" onclick="event.preventDefault();scrollToSection('hero')" data-i18n="nav_home">Главная</a></li>
       <li><a href="#story" onclick="event.preventDefault();scrollToSection('story')" data-i18n="nav_story">Обо мне</a></li>
-      <li><a href="#portfoliogrid" data-i18n="nav_portfolio">Портфолио</a></li>
+      <li><a href="#portfolio" onclick="event.preventDefault();scrollToSection('portfolio')" data-i18n="nav_portfolio">Портфолио</a></li>
       <li><a href="#reviews" data-i18n="nav_reviews">Отзывы</a></li>
       <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Контакты</a></li>
@@ -215,7 +215,7 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
   <div class="menu-content">
     <a href="#hero" onclick="event.preventDefault();scrollToSection('hero')" class="menu-link" data-i18n="menu_home">Главная</a>
     <a href="#story" onclick="event.preventDefault();scrollToSection('story')" class="menu-link" data-i18n="menu_story">Обо мне</a>
-    <a href="#portfoliogrid" class="menu-link" data-i18n="menu_portfolio">Портфолио</a>
+    <a href="#portfolio" onclick="event.preventDefault();scrollToSection('portfolio')" class="menu-link" data-i18n="menu_portfolio">Портфолио</a>
     <a href="#reviews" class="menu-link" data-i18n="menu_reviews">Отзывы</a>
     <a href="#services" class="menu-link" data-i18n="menu_services">Услуги и цены</a>
     <a href="#faq" class="menu-link" data-i18n="menu_faq">Вопросы</a>
@@ -689,7 +689,7 @@ function scrollToSection(id) {
   var h = sticky.offsetHeight, vh = window.innerHeight;
   var scrollable = h - vh;
   var top = sticky.getBoundingClientRect().top + window.scrollY;
-  var targets = { hero: 0.01, story: 0.36, about: 0.52, portfolio: 0.74 };
+  var targets = { hero: 0.01, story: 0.36, about: 0.52, portfolio: 0.89 };
   var o = targets[id] || 0;
   window.scrollTo({ top: top + o * scrollable, behavior: 'smooth' });
 }
