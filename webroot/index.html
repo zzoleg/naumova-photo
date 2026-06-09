@@ -83,6 +83,19 @@ body.menu-open .hamburger { display: none; }
 .story-photo-wrap { max-width: 420px; width: 100%; position: relative; margin-top: 16px; }
 .story-photo-wrap img { width: 100%; height: auto; display: block; border-radius: 8px; filter: grayscale(1) brightness(0.7); }
 .story-photo-quote { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 20px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: var(--accent); font-family: 'EB Garamond', serif; font-size: 1.35rem; font-style: italic; line-height: 1.2; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.5); border-radius: 0 0 8px 8px; }
+
+/* Story carousel */
+.story-carousel { position: relative; width: 100%; max-width: 420px; margin-top: 16px; }
+.story-carousel-track { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px; }
+.story-carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
+.story-carousel-slide.active { opacity: 1; }
+.story-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) brightness(0.65); }
+.story-carousel-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 18px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: var(--accent); font-family: 'EB Garamond', serif; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.35; text-align: left; text-shadow: 0 2px 12px rgba(0,0,0,0.7); border-radius: 0 0 8px 8px; white-space: pre-line; }
+.story-carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
+.story-carousel-arrow { background: none; border: 1px solid rgba(255,255,255,0.1); color: var(--text); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: .85rem; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, color 0.3s, background 0.3s; }
+.story-carousel-arrow:hover { border-color: var(--accent); color: var(--accent); background: rgba(212,136,58,0.08); }
+.story-carousel-counter { font-family: 'Barlow', sans-serif; font-size: .75rem; color: var(--muted); letter-spacing: .1em; }
+.story-carousel-counter span { color: var(--accent); font-weight: 700; }
 .normal-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 40px; text-align: center; }
 .normal-section .label { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
 .normal-section h2 { font-size: 22.5pt; font-weight: 900; margin-bottom: 20px; line-height: 1.2; font-family: 'Barlow', sans-serif; color: #f28705; }
@@ -252,11 +265,88 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
   <div class="scroll-section" id="story">
     <div class="label" data-i18n="story_label">Обо мне</div>
     <h2 data-i18n="story_title">Рада приветствовать Вас!</h2>
-    <div class="story-photo-wrap">
-      <img src="/wfolio-assets/portrait2.jpg" alt="Алёна Наумова">
-      <div class="story-photo-quote">« Фотография — это возможность остановить время, познакомиться с собой настоящим. »</div>
+    <div class="story-carousel">
+      <div class="story-carousel-track" id="storyCarouselTrack">
+        <div class="story-carousel-slide active">
+          <img src="/wfolio-assets/insta/DHV2TQHO4VX_1.jpg" alt="">
+          <div class="story-carousel-text">Главное знакомство,<br>которое должно случиться<br>в жизни каждого человека —<br>это знакомство с самим собой.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DHwTYeZOkFW_1.jpg" alt="">
+          <div class="story-carousel-text">Я дала себе две вещи.<br>Разрешение быть неидеальной.<br>Обещание оставаться живой.<br>Собой. Даже вопреки.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DHwTYeZOkFW_2.jpg" alt="">
+          <div class="story-carousel-text">Быть неидеальной —<br>это нормально.<br>Быть живой, настоящей —<br>это бесценно.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DHwTYeZOkFW_9.jpg" alt="">
+          <div class="story-carousel-text">Оставаться собой.<br>Даже когда страшно.<br>Даже когда трудно.<br>Особенно тогда.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DIJf7tUoo1G_1.jpg" alt="">
+          <div class="story-carousel-text">Собираюсь в путешествие.<br>Далёкое, давно запланированное…<br>Путешествие к себе.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DIJf7tUoo1G_2.jpg" alt="">
+          <div class="story-carousel-text">Старые установки не беру.<br>Зачем вес прибавлять?<br>В чемодане — только то,<br>что согревает.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DIJf7tUoo1G_3.jpg" alt="">
+          <div class="story-carousel-text">В чемодане — воспоминания,<br>инсайты, прожитые эмоции.<br>Опыт, какой бы он ни был,<br>он — мой.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DIW48TAIHeu_1.jpg" alt="">
+          <div class="story-carousel-text">Не останавливаться.<br>Идти вперёд.<br>Каждый день возвращать себе<br>по крупинкам саму себя.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DI4SSQ7oYE-_1.jpg" alt="">
+          <div class="story-carousel-text">После «К себе нежно»<br>пришёл новый этап.<br>Бойся, но делай.<br>Сильно боишься? Делай обязательно!</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DJXHlr8oj5__1.jpg" alt="">
+          <div class="story-carousel-text">Пришла жадность до жизни.<br>Не хочется откладывать<br>на потом ни одну мечту.<br>Самое правильное время — сейчас.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DKUIJIFoQle_1.jpg" alt="">
+          <div class="story-carousel-text">Найти в себе того самого<br>мудрого, осознанного,<br>терпеливого взрослого.<br>Того, кто всегда рядом.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DNLeN64i79I_1.jpg" alt="">
+          <div class="story-carousel-text">Фотография — моя любовь<br>с первого кадра.<br>Моё хобби, моя страсть<br>и моя терапия.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DNLeN64i79I_2.jpg" alt="">
+          <div class="story-carousel-text">Иногда любовь приходит<br>не через удовольствие.<br>Фотография стала глотком воздуха,<br>лекарством и дверью в новый мир.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DS2mZKkDEfR_1.jpg" alt="">
+          <div class="story-carousel-text">Без кромешной тьмы<br>невозможно разглядеть<br>лучи света.<br>Дуализм — часть жизни.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DWMk64EjCrr_1.jpg" alt="">
+          <div class="story-carousel-text">Мне всегда было трудно<br>отпускать прошлое.<br>Но перемены приходят<br>и возвращают к жизни.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DWMk64EjCrr_3.jpg" alt="">
+          <div class="story-carousel-text">Перемены приносят<br>новые события, новых людей.<br>Старое уйдёт,<br>но мир не станет пустыней.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DWMk64EjCrr_6.jpg" alt="">
+          <div class="story-carousel-text">Вы пришли,<br>чтобы вернуть меня к жизни.<br>Благодарю все события,<br>открывшие мне — меня.</div>
+        </div>
+        <div class="story-carousel-slide">
+          <img src="/wfolio-assets/insta/DT5T_RLDKkk_1.jpg" alt="">
+          <div class="story-carousel-text">Фотография — как<br>волшебное зелье.<br>Помогает расколдовать нас<br>и познакомить с собой настоящим.</div>
+        </div>
+      </div>
+      <div class="story-carousel-nav">
+        <button class="story-carousel-arrow" id="storyCarouselPrev">←</button>
+        <div class="story-carousel-counter"><span id="storyCarouselCurrent">1</span> / 18</div>
+        <button class="story-carousel-arrow" id="storyCarouselNext">→</button>
+      </div>
     </div>
-    <p data-i18n="story_desc">Меня зовут Алёна Наумова, и для меня фотография это гораздо больше, чем кадры о жизни. Психолог, педагог, мама троих детей. Автор персональных выставок.</p>
+  </div>
   </div>
 
   <div class="scroll-section" id="about">
@@ -759,6 +849,44 @@ function scrollToSection(id) {
     if (!ticking) { requestAnimationFrame(function() { update(); ticking = false; }); ticking = true; }
   });
   setMask(0); update();
+})();
+
+/* Story carousel navigation */
+(function() {
+  var track = document.getElementById('storyCarouselTrack');
+  var slides = track && track.querySelectorAll('.story-carousel-slide');
+  var prevBtn = document.getElementById('storyCarouselPrev');
+  var nextBtn = document.getElementById('storyCarouselNext');
+  var counter = document.getElementById('storyCarouselCurrent');
+  if (!slides || !slides.length) return;
+  var current = 0, timer;
+  function goTo(idx) {
+    if (idx < 0) idx = slides.length - 1;
+    if (idx >= slides.length) idx = 0;
+    slides.forEach(function(s, i) { s.classList.toggle('active', i === idx); });
+    if (counter) counter.textContent = idx + 1;
+    current = idx;
+  }
+  if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); resetTimer(); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); resetTimer(); });
+  function resetTimer() { clearInterval(timer); timer = setInterval(function() { goTo(current + 1); }, 5000); }
+  var container = document.querySelector('.story-carousel');
+  if (container) {
+    container.addEventListener('touchstart', function(e) { window._scx = e.touches[0].clientX; }, {passive:true});
+    container.addEventListener('touchend', function(e) {
+      var diff = window._scx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) { if (diff > 0) goTo(current + 1); else goTo(current - 1); resetTimer(); }
+    }, {passive:true});
+  }
+  document.addEventListener('keydown', function(e) {
+    var sec = document.getElementById('story');
+    if (!sec) return;
+    var rect = sec.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+    if (e.key === 'ArrowLeft') { goTo(current - 1); resetTimer(); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); resetTimer(); }
+  });
+  timer = setInterval(function() { goTo(current + 1); }, 5000);
 })();
 
 /* Reviews carousel */
