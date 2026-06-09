@@ -80,6 +80,9 @@ body.menu-open .hamburger { display: none; }
 .scroll-section p { max-width: 640px; color: var(--muted); font-size: 1.8rem; line-height: 1.25; }
 #hero p { max-width: 600px; font-size: 1.45rem; color: #b8b1a2; margin-bottom: 40px; margin: 0 auto 40px; text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 4px 24px rgba(0,0,0,0.3); }
 .scroll-section blockquote { font-size: 1.3rem; font-style: italic; color: var(--accent-light); margin-bottom: 24px; border-left: 2px solid var(--accent); padding-left: 20px; text-align: left; max-width: 500px; }
+.story-photo-wrap { max-width: 420px; width: 100%; position: relative; margin-top: 16px; }
+.story-photo-wrap img { width: 100%; height: auto; display: block; border-radius: 8px; filter: grayscale(1) brightness(0.7); }
+.story-photo-quote { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 20px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: var(--accent); font-family: 'EB Garamond', serif; font-size: 1.35rem; font-style: italic; line-height: 1.2; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.5); border-radius: 0 0 8px 8px; }
 .normal-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 40px; text-align: center; }
 .normal-section .label { font-family: var(--font-sans); font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
 .normal-section h2 { font-size: 22.5pt; font-weight: 900; margin-bottom: 20px; line-height: 1.2; font-family: 'Barlow', sans-serif; color: #f28705; }
@@ -249,8 +252,11 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
   <div class="scroll-section" id="story">
     <div class="label" data-i18n="story_label">Обо мне</div>
     <h2 data-i18n="story_title">Рада приветствовать Вас!</h2>
+    <div class="story-photo-wrap">
+      <img src="/wfolio-assets/portrait2.jpg" alt="Алёна Наумова">
+      <div class="story-photo-quote">« Фотография — это возможность остановить время, познакомиться с собой настоящим. »</div>
+    </div>
     <p data-i18n="story_desc">Меня зовут Алёна Наумова, и для меня фотография это гораздо больше, чем кадры о жизни. Психолог, педагог, мама троих детей. Автор персональных выставок.</p>
-    <blockquote data-i18n="story_quote">« Это возможность остановить время, познакомиться с собой настоящим. »</blockquote>
   </div>
 
   <div class="scroll-section" id="about">
