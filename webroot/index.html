@@ -85,12 +85,13 @@ body.menu-open .hamburger { display: none; }
 .story-photo-quote { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 20px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: var(--accent); font-family: 'EB Garamond', serif; font-size: 1.35rem; font-style: italic; line-height: 1.2; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.5); border-radius: 0 0 8px 8px; }
 
 /* Story carousel */
-.story-carousel { position: relative; width: 100%; max-width: 420px; margin-top: 16px; }
+.story-carousel { position: relative; width: 100%; max-width: 420px; margin-top: 16px; pointer-events: auto; }
+.story-carousel a { pointer-events: auto; }
 .story-carousel-track { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px; }
 .story-carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
 .story-carousel-slide.active { opacity: 1; }
 .story-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) brightness(0.65); }
-.story-carousel-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 18px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: var(--accent); font-family: 'EB Garamond', serif; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.35; text-align: left; text-shadow: 0 2px 12px rgba(0,0,0,0.7); border-radius: 0 0 8px 8px; white-space: pre-line; }
+.story-carousel-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 18px 16px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: var(--accent); font-family: 'EB Garamond', serif; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.35; text-align: center; text-shadow: 0 2px 12px rgba(0,0,0,0.7); border-radius: 0 0 8px 8px; white-space: pre-line; }
 .story-carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
 .story-carousel-arrow { background: none; border: 1px solid rgba(255,255,255,0.1); color: var(--text); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: .85rem; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, color 0.3s, background 0.3s; }
 .story-carousel-arrow:hover { border-color: var(--accent); color: var(--accent); background: rgba(212,136,58,0.08); }
@@ -281,7 +282,7 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
         </div>
         <div class="story-carousel-slide">
           <img src="/wfolio-assets/insta/DHwTYeZOkFW_9.jpg" alt="">
-          <div class="story-carousel-text">Оставаться собой.<br>Даже когда страшно.<br>Даже когда трудно.<br>Особенно тогда.</div>
+          <div class="story-carousel-text">С детства обожала листать<br>альбомы с фотографиями.<br>Вглядывалась в лица —<br>они как иллюстрации к книге.</div>
         </div>
         <div class="story-carousel-slide">
           <img src="/wfolio-assets/insta/DIJf7tUoo1G_1.jpg" alt="">
@@ -305,7 +306,7 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
         </div>
         <div class="story-carousel-slide">
           <img src="/wfolio-assets/insta/DJXHlr8oj5__1.jpg" alt="">
-          <div class="story-carousel-text">Пришла жадность до жизни.<br>Не хочется откладывать<br>на потом ни одну мечту.<br>Самое правильное время — сейчас.</div>
+          <div class="story-carousel-text">Фотография стала<br>глотком свежего воздуха.<br>Лекарством и дверью<br>в параллельный мир.</div>
         </div>
         <div class="story-carousel-slide">
           <img src="/wfolio-assets/insta/DKUIJIFoQle_1.jpg" alt="">
@@ -333,7 +334,7 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
         </div>
         <div class="story-carousel-slide">
           <img src="/wfolio-assets/insta/DWMk64EjCrr_6.jpg" alt="">
-          <div class="story-carousel-text">Вы пришли,<br>чтобы вернуть меня к жизни.<br>Благодарю все события,<br>открывшие мне — меня.</div>
+          <div class="story-carousel-text">Фотография обладает<br>целительным эффектом —<br>и для меня, и для тех,<brкого я снимаю.</div>
         </div>
         <div class="story-carousel-slide">
           <img src="/wfolio-assets/insta/DT5T_RLDKkk_1.jpg" alt="">
@@ -345,6 +346,7 @@ footer { padding: 40px; text-align: center; font-family: var(--font-sans); font-
         <div class="story-carousel-counter"><span id="storyCarouselCurrent">1</span> / 18</div>
         <button class="story-carousel-arrow" id="storyCarouselNext">→</button>
       </div>
+      <a href="/about-detailed.html" class="nav-book-btn" style="margin-top:20px">Моя история</a>
     </div>
   </div>
   </div>
@@ -869,7 +871,7 @@ function scrollToSection(id) {
   }
   if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); resetTimer(); });
   if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); resetTimer(); });
-  function resetTimer() { clearInterval(timer); timer = setInterval(function() { goTo(current + 1); }, 5000); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(function() { goTo(current + 1); }, 7000); }
   var container = document.querySelector('.story-carousel');
   if (container) {
     container.addEventListener('touchstart', function(e) { window._scx = e.touches[0].clientX; }, {passive:true});
@@ -886,7 +888,7 @@ function scrollToSection(id) {
     if (e.key === 'ArrowLeft') { goTo(current - 1); resetTimer(); }
     if (e.key === 'ArrowRight') { goTo(current + 1); resetTimer(); }
   });
-  timer = setInterval(function() { goTo(current + 1); }, 5000);
+  timer = setInterval(function() { goTo(current + 1); }, 7000);
 })();
 
 /* Reviews carousel */
