@@ -307,7 +307,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if self.path == "/api/admin/status":
             self.handle_admin_status()
             return
+        self._nocache_html = self.path == "/" or self.path.endswith(".html")
         super().do_GET()
+
+    def end_headers(self):
+        if getattr(self, "_nocache_html", False):
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
+        super().end_headers()
 
     def do_POST(self):
         content_len = int(self.headers.get("Content-Length", 0))
