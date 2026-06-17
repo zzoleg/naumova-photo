@@ -8,6 +8,7 @@ import os
 import sys
 import signal
 import json
+import base64
 import urllib.request
 import urllib.parse
 import subprocess
@@ -20,6 +21,77 @@ CERT = "/etc/letsencrypt/live/148.222.186.199.nip.io/fullchain.pem"
 KEY = "/etc/letsencrypt/live/148.222.186.199.nip.io/privkey.pem"
 ENV_FILE = "/root/projects/pixel-site/.env"
 BOT_SERVICE = "naumova-admin-bot.service"
+AUTH_USER = "oleg"
+
+LOGIN_HTML = """<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naumova — Вход</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=EB+Garamond:wght@400;500;600;700&family=Sedan&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #0a0a0a; --text: #e5dfd3; --muted: #8a857b; --accent: #d4883a; --accent-light: #e8a74d; --font-serif: 'EB Garamond', serif; --font-sans: 'Montserrat', sans-serif; --font-display: 'Sedan', serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.container { max-width: 440px; width: 100%; padding: 40px 24px; text-align: center; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .15em; margin-bottom: 4px; }
+.subtitle { color: var(--muted); font-size: .85rem; margin-bottom: 40px; }
+.card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 32px; text-align: left; }
+h2 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 20px; text-align: center; }
+label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .1em; }
+input { width: 100%; padding: 12px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: var(--text); font-family: var(--font-sans); font-size: .95rem; outline: none; transition: border .3s; margin-bottom: 16px; }
+input:focus { border-color: var(--accent); }
+.btn { width: 100%; padding: 12px; background: var(--accent); color: #0a0a0a; border: none; border-radius: 8px; font-family: var(--font-sans); font-size: .9rem; font-weight: 600; cursor: pointer; transition: background .3s; }
+.btn:hover { background: var(--accent-light); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.status { margin-top: 16px; padding: 12px 16px; border-radius: 8px; font-size: .85rem; display: none; }
+.status.err { display: block; background: rgba(244, 67, 54, .15); border: 1px solid #f44336; color: #f44336; }
+.status.ok { display: block; background: rgba(76, 175, 80, .15); border: 1px solid #4caf50; color: #4caf50; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">Naumova</div>
+  <div class="subtitle">Временная защита разработки</div>
+  <div class="card">
+    <h2>🔐 Доступ к сайту</h2>
+    <label for="user">Логин</label>
+    <input type="text" id="user" placeholder="oleg" onkeydown="if(event.key==='Enter') doLogin()">
+    <label for="pass">Пароль</label>
+    <input type="password" id="pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="btn" id="loginBtn" onclick="doLogin()">Войти</button>
+    <div class="status" id="statusMsg"></div>
+  </div>
+</div>
+<script>
+function setMsg(type, t) {
+  var el = document.getElementById('statusMsg');
+  el.className = 'status ' + type;
+  el.textContent = t;
+  el.style.display = 'block';
+}
+async function doLogin() {
+  var u = document.getElementById('user').value;
+  var p = document.getElementById('pass').value;
+  var btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Проверка...';
+  try {
+    var cred = btoa(u + ':' + p);
+    var r = await fetch('/', { headers: {'Authorization': 'Basic ' + cred} });
+    if (r.ok) {
+      document.cookie = 'auth=' + cred + ';path=/;SameSite=Lax;max-age=86400';
+      window.location.href = '/';
+    } else {
+      setMsg('err', '❌ Неверный логин или пароль');
+    }
+  } catch(e) { setMsg('err', '❌ Ошибка: ' + e.message); }
+  btn.disabled = false; btn.textContent = 'Войти';
+}
+</script>
+</body>
+</html>"""
 
 def load_env_var(key, default=""):
     """Read a single variable from .env file."""
@@ -296,19 +368,62 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=WEBROOT, **kwargs)
 
+    def authenticate(self):
+        """Check Authorization header or auth cookie against ADMIN_PASSWORD."""
+        auth = self.headers.get("Authorization")
+        if not auth:
+            cookies = self.headers.get("Cookie", "")
+            for part in cookies.split(";"):
+                part = part.strip()
+                if part.startswith("auth="):
+                    auth = "Basic " + part[5:]
+                    break
+        if not auth:
+            return False
+        try:
+            auth_type, creds = auth.split(" ", 1)
+            if auth_type.lower() != "basic":
+                return False
+            decoded = base64.b64decode(creds).decode("utf-8")
+            username, password = decoded.split(":", 1)
+            expected = load_env_var("ADMIN_PASSWORD")
+            return bool(expected) and username == AUTH_USER and password == expected
+        except Exception:
+            return False
+
+    def send_auth_required(self):
+        self.send_response(401)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
+        self.end_headers()
+        self.wfile.write(LOGIN_HTML.encode("utf-8"))
+
     def do_GET(self):
-        if self.path == "/admin":
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
-            self.end_headers()
-            self.wfile.write(ADMIN_HTML.encode("utf-8"))
-            return
-        if self.path == "/api/admin/status":
-            self.handle_admin_status()
-            return
-        self._nocache_html = self.path == "/" or self.path.endswith(".html")
-        super().do_GET()
+        try:
+            # Auth check — all pages except /api/* (they have their own auth or are stateless)
+            if not self.path.startswith("/api/") and not self.authenticate():
+                self.send_auth_required()
+                return
+            if self.path == "/admin":
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
+                self.end_headers()
+                self.wfile.write(ADMIN_HTML.encode("utf-8"))
+                return
+            if self.path == "/api/admin/status":
+                self.handle_admin_status()
+                return
+            self._nocache_html = self.path == "/" or self.path.endswith(".html")
+            super().do_GET()
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass  # client disconnected — don't crash
+
+    def do_HEAD(self):
+        try:
+            super().do_HEAD()
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass
 
     def end_headers(self):
         if getattr(self, "_nocache_html", False):
@@ -468,14 +583,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 def run():
     try:
         server = http.server.HTTPServer(("0.0.0.0", PORT), Handler)
-        server.socket = ssl.wrap_socket(
-            server.socket,
-            certfile=CERT,
-            keyfile=KEY,
-            server_side=True,
-        )
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        ctx.load_cert_chain(CERT, KEY)
+        server.socket = ctx.wrap_socket(server.socket, server_side=True)
         print(f"Serving pixel-site on https://0.0.0.0:{PORT}")
-        print(f"Admin panel: https://0.0.0.0:{PORT}/admin")
+        print(f"Login: https://0.0.0.0:{PORT}/")
+        print(f"Admin: https://0.0.0.0:{PORT}/admin")
         sys.stdout.flush()
         server.serve_forever()
     except OSError as e:
