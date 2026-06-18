@@ -364,6 +364,8 @@ def restart_bot_service():
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    _rate_limit = {}  # {ip: [timestamps]}
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=WEBROOT, **kwargs)
 
@@ -524,9 +526,32 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_json(200, {"success": False, "message": f"Ошибка: {str(e)}"})
 
     def handle_contact(self, body):
-        """Handle contact form submission."""
+        """Handle contact form submission with honeypot + rate-limit."""
         try:
+            # --- Honeypot check ---
             data = json.loads(body)
+            if data.get("website", "").strip():
+                # Bot filled the hidden field — fake success, do nothing
+                self.send_json(200, {
+                    "success": True,
+                    "message": "Спасибо! Ваше сообщение отправлено. Я свяжусь с вами в ближайшее время."
+                })
+                return
+
+            # --- Rate-limit by IP ---
+            ip = self.client_address[0]
+            now = time.time()
+            window = 600  # 10 minutes
+            max_requests = 3
+            timestamps = Handler._rate_limit.get(ip, [])
+            # Keep only requests within the window
+            timestamps = [t for t in timestamps if now - t < window]
+            if len(timestamps) >= max_requests:
+                self.send_json(429, {"error": "Слишком много запросов. Попробуйте позже."})
+                return
+            timestamps.append(now)
+            Handler._rate_limit[ip] = timestamps
+
             name = data.get("name", "Не указано")
             contact = data.get("contact", "Не указано")
             message = data.get("message", "")
