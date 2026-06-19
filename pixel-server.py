@@ -15,11 +15,11 @@ import subprocess
 import secrets
 import time
 
-PORT = 8444
+PORT = 8080
 WEBROOT = "/var/www/site-ofskin/webroot"
-CERT = "/etc/letsencrypt/live/148.222.186.199.nip.io/fullchain.pem"
-KEY = "/etc/letsencrypt/live/148.222.186.199.nip.io/privkey.pem"
-ENV_FILE = "/root/projects/pixel-site/.env"
+
+
+ENV_FILE = "/root/.env"
 BOT_SERVICE = "naumova-admin-bot.service"
 AUTH_USER = "oleg"
 
@@ -365,6 +365,8 @@ def restart_bot_service():
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     _rate_limit = {}  # {ip: [timestamps]}
+    server_version = "web"   # hide "SimpleHTTP/0.6"
+    sys_version = ""          # hide "Python/3.12.3"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=WEBROOT, **kwargs)
@@ -401,8 +403,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         try:
-            # Auth check — all pages except /api/* (they have their own auth or are stateless)
-            if not self.path.startswith("/api/") and not self.authenticate():
+            # Auth check — only /admin requires password
+            if self.path == "/admin" and not self.authenticate():
                 self.send_auth_required()
                 return
             if self.path == "/admin":
@@ -427,6 +429,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             pass
 
     def end_headers(self):
+        # HSTS: site is HTTPS-only with http->https redirect already in place
+        self.send_header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
         if getattr(self, "_nocache_html", False):
             self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
         super().end_headers()
@@ -606,13 +610,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 def run():
     try:
-        server = http.server.HTTPServer(("0.0.0.0", PORT), Handler)
-        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-        ctx.load_cert_chain(CERT, KEY)
-        server.socket = ctx.wrap_socket(server.socket, server_side=True)
-        print(f"Serving pixel-site on https://0.0.0.0:{PORT}")
-        print(f"Login: https://0.0.0.0:{PORT}/")
-        print(f"Admin: https://0.0.0.0:{PORT}/admin")
+        server = http.server.HTTPServer(("127.0.0.1", PORT), Handler)
+        print(f"Serving pixel-site on http://127.0.0.1:{PORT}")
+        print(f"Caddy handles HTTPS on ports 80/443")
         sys.stdout.flush()
         server.serve_forever()
     except OSError as e:
